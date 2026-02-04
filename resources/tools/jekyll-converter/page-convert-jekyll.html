@@ -198,6 +198,22 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                 return uri.substring(lastSlashIndex + 1);
             }
             return "";
+        }, 
+        getFilename = function () {
+            let targetURL;
+
+            if (document.getElementById("uri").value !== "" && URL.canParse(document.getElementById("uri").value) === true) {
+                targetURL = new URL(document.getElementById("uri").value);
+                return getFilenameFromUrl(targetURL.pathname);
+            }
+            return "";
+        }, 
+        showSaveBtn = function () {
+            if (resultArea.value === "" || getFilename() === "") {
+                document.getElementById("githubsave").classList.add("wb-inv");
+            } else {
+                document.getElementById("githubsave").classList.remove("wb-inv");
+            }
         };
 
     // submit button
@@ -313,6 +329,9 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                     });
             }
         }
+
+        showSaveBtn();        
+
         e.stopPropagation();
         e.preventDefault();
 
@@ -410,13 +429,23 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
             document.getElementById("uri").value = decodeURIComponent(page_url);
             evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
             cb.dispatchEvent(evt);
+        } else {
+            showSaveBtn();        
         }
     }, false);
 
+    resultArea.addEventListener("input", function () {
+        showSaveBtn();
+    });
+
+    document.getElementById("uri").addEventListener("input", function () {
+        showSaveBtn();
+    });
+
     document.getElementById("githubsave").addEventListener("click", function (e) {
-        let targetURL, fileName, 
+        let fileName, 
             saveTextAsFile = function saveTextAsFile() {
-                let textToWrite = document.getElementById("sourcetext").value, 
+                let textToWrite = resultArea.value, 
                     textFileAsBlob = new Blob([textToWrite], {
                         type: "text/plain"
                     }), 
@@ -441,10 +470,7 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                 document.body.removeChild(event.target);
             };
 
-        if (document.getElementById("uri").value !== "" && URL.canParse(document.getElementById("uri").value) === true) {
-            targetURL = new URL(document.getElementById("uri").value);
-            fileName = getFilenameFromUrl(targetURL.pathname);
-        }
+        fileName = getFilename();
 
         if (fileName !== "" && resultArea.value !== "") {
             saveTextAsFile();
