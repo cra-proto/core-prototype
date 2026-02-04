@@ -22,6 +22,7 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
         <li>Pages with <strong>subways</strong> normally use a <strong>layout</strong> of <code>without-h1</code> </li>
         <li>Pages with <strong>most requested section</strong> should use a <strong>layout</strong> of <code>no-container</code></li>
         <li>The <abbr title="Centrally Deployed Templates Solution">CDTS</abbr> template type is not configured to support the <code>no-container</code> and <code>gcds</code> <strong>layout</strong> options</li>
+    </ul>
 </section>
 <div>
     <details>
@@ -34,7 +35,6 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
     </details>
 </div>
 <div class="clearfix"></div>
-
 <div class="wb-frmvld">
 <form id="convertform" action="#" accept-charset="UTF-8" enctype="application/x-www-form-urlencoded" method="get">
     <fieldset>
@@ -70,11 +70,11 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
             <fieldset id="fmRadiobox" class="gc-chckbxrdio form-inline mrgn-lft-md mrgn-tp-md mrgn-bttm-md">
                 <legend>Front Matter code:</legend>
                 <div class="radio label-inline">
-                    <input id="json" type="radio" name="frontmatter" value="json">
+                    <input id="json" type="radio" name="frontmatter" value="json" checked="checked">
                     <label for="json"><abbr title="JavaScript Object Notation">JSON</abbr></label>
                 </div>
                 <div class="radio label-inline">
-                    <input id="yaml" type="radio" name="frontmatter" value="yaml" checked="checked">
+                    <input id="yaml" type="radio" name="frontmatter" value="yaml">
                     <label for="yaml"><abbr title="YAML Ain't Markup Language">YAML</abbr></label>
                 </div>
             </fieldset>
@@ -198,22 +198,6 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                 return uri.substring(lastSlashIndex + 1);
             }
             return "";
-        }, 
-        getFilename = function () {
-            let targetURL;
-
-            if (document.getElementById("uri").value !== "" && URL.canParse(document.getElementById("uri").value) === true) {
-                targetURL = new URL(document.getElementById("uri").value);
-                return getFilenameFromUrl(targetURL.pathname);
-            }
-            return "";
-        }, 
-        showSaveBtn = function () {
-            if (resultArea.value === "" || getFilename() === "") {
-                document.getElementById("githubsave").classList.add("wb-inv");
-            } else {
-                document.getElementById("githubsave").classList.remove("wb-inv");
-            }
         };
 
     // submit button
@@ -329,9 +313,6 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                     });
             }
         }
-
-        showSaveBtn();        
-
         e.stopPropagation();
         e.preventDefault();
 
@@ -429,23 +410,13 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
             document.getElementById("uri").value = decodeURIComponent(page_url);
             evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
             cb.dispatchEvent(evt);
-        } else {
-            showSaveBtn();        
         }
     }, false);
 
-    resultArea.addEventListener("input", function () {
-        showSaveBtn();
-    });
-
-    document.getElementById("uri").addEventListener("input", function () {
-        showSaveBtn();
-    });
-
     document.getElementById("githubsave").addEventListener("click", function (e) {
-        let fileName, 
+        let targetURL, fileName, 
             saveTextAsFile = function saveTextAsFile() {
-                let textToWrite = resultArea.value, 
+                let textToWrite = document.getElementById("sourcetext").value, 
                     textFileAsBlob = new Blob([textToWrite], {
                         type: "text/plain"
                     }), 
@@ -470,7 +441,10 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                 document.body.removeChild(event.target);
             };
 
-        fileName = getFilename();
+        if (document.getElementById("uri").value !== "" && URL.canParse(document.getElementById("uri").value) === true) {
+            targetURL = new URL(document.getElementById("uri").value);
+            fileName = getFilenameFromUrl(targetURL.pathname);
+        }
 
         if (fileName !== "" && resultArea.value !== "") {
             saveTextAsFile();
