@@ -65,7 +65,7 @@ let outputPage = (function outputPage() {
                     if (addQuote === true) {
                         encloseQuote = "\"";
                     }
-                    if (metaEl !== null && metaEl.length > 0 && "content" in metaEl[0] === true) {
+                    if (metaEl !== null && metaEl.length > 0 && "content" in metaEl[0] === true && metaEl[0].content.trim().length > 0) {
                         return outputPage().formatOutputType(templateType, frontMatterType, fieldname + ": " + encloseQuote + metaEl[0].content.trim() + encloseQuote + "\n", "\"" + fieldname + "\": \"" + metaEl[0].content.trim() + "\"");
                     }
                     return "";
@@ -130,7 +130,7 @@ let outputPage = (function outputPage() {
                     }, 
                     "title": function title() {
                         // Adds title
-                        if (pageTitleObj !== null && "content" in pageTitleObj === true) {
+                        if (pageTitleObj !== null && "content" in pageTitleObj === true && pageTitleObj.content.trim().length > 0) {
                             return outputPage().formatOutputType(templateType, frontMatterType, "title: \"" + pageTitleObj.content.trim() + "\"\n", "\"title\": \"" + pageTitleObj.content.trim() + "\"");
                         }
                         return "";
