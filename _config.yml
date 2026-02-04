@@ -2,8 +2,8 @@
 # standard jekyll configuration
 content_editable: true
 baseurl: /core-prototype
-url: https://cra-design.github.io
-repository: cra-design/core-prototype
+url: https://cra-proto.github.io
+repository: cra-proto/core-prototype
 website: https://www.canada.ca/en.html
 
 # Remote theme, use the latest version
