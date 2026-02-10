@@ -113,7 +113,7 @@ const outputPage = (function outputPage() {
             if (pageObj === null || pageObj === "") {
                 return {"cssCode": "", "fmCode": "", "htmlCode": "", "scriptCode": ""};
             } else {
-                pageTitleObj = pageObj.querySelector(String.raw`meta[name=dcterms.title]`);
+                pageTitleObj = pageObj.querySelector("meta[name=dcterms\\.title]");
                 return {
                     "layout": function layout() {
                         let mainCode = pageObj.getElementsByTagName("main")[0];
