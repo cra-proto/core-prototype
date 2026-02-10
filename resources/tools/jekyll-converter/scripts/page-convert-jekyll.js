@@ -1,6 +1,6 @@
 // Generates the GCWeb/Jekyll page
 
-let outputPage = (function outputPage() {
+const outputPage = (function outputPage() {
     "use strict";
     let jsonFilePath = "/core-prototype/resources/tools/jekyll-converter/data/template-links.json";
 
@@ -20,7 +20,7 @@ let outputPage = (function outputPage() {
                     if (data === null) {
                         return null;
                     }
-                    result = data.replace(absUrlRegEx, "$1" + pageURI.protocol + "//" + pageURI.hostname + "$2");
+                    result = data.replaceAll(absUrlRegEx, "$1" + pageURI.protocol + "//" + pageURI.hostname + "$2");
                     return parser.parseFromString(result, "text/html");
                 } catch (error) {
                     // Handle the error here
@@ -113,7 +113,7 @@ let outputPage = (function outputPage() {
             if (pageObj === null || pageObj === "") {
                 return {"cssCode": "", "fmCode": "", "htmlCode": "", "scriptCode": ""};
             } else {
-                pageTitleObj = pageObj.querySelector("meta[name=dcterms\\.title]");
+                pageTitleObj = pageObj.querySelector(String.raw`meta[name=dcterms.title]`);
                 return {
                     "layout": function layout() {
                         let mainCode = pageObj.getElementsByTagName("main")[0];
@@ -164,7 +164,7 @@ let outputPage = (function outputPage() {
                         } else if (pagelang === "en") {
                             altlangObj = pageObj.querySelector("link[rel=alternate][hreflang=fr]");
                         }
-                        if (altlangObj !== null && typeof altlangObj !== "undefined") {
+                        if (altlangObj !== null && altlangObj !== "undefined") {
                             return outputPage().formatOutputType(templateType, frontMatterType, "altLangPage: \"" + altlangObj.href + "\"\n", "\"altLangPage\": \"" + altlangObj.href + "\"");
                         }
                         return "";
@@ -183,7 +183,7 @@ let outputPage = (function outputPage() {
                             breadcrumbOutput = "", 
                             breadCrumbObj = pageObj.getElementsByClassName("breadcrumb");
 
-                        if (typeof breadCrumbObj !== "undefined" && breadCrumbObj.length > 0) {
+                        if (breadCrumbObj !== "undefined" && breadCrumbObj.length > 0) {
                             breadcrumbLinks = breadCrumbObj[0].querySelectorAll("a");
                             if (breadcrumbLinks.length > 1) {
                                 breadcrumbOutput = outputPage().formatOutputType(templateType, frontMatterType, "breadcrumbs: # By default the Canada.ca crumbs is already set\n", "\"breadcrumbs\": [");
@@ -259,7 +259,7 @@ let outputPage = (function outputPage() {
                         for (let scriptElm of scriptElms) {
                             if (scriptElm.innerHTML !== "") {
                                 // Gets any <script> tags outside of the <main> tag and adds them to the bottom of the content
-                                if (includeScripts === true && islinkInTemplate(fileLinkArr.inlineScript, scriptElm.textContent.replace(/[\r\n\s]+/g, "").toLowerCase(), "iv", false) === false) {
+                                if (includeScripts === true && islinkInTemplate(fileLinkArr.inlineScript, scriptElm.textContent.replaceAll(/[\r\n\s]+/g, "").toLowerCase(), "iv", false) === false) {
                                     scriptData += scriptElm.outerHTML + "\n";
                                 }
                             } else if (islinkInTemplate(fileLinkArr.scriptsRegEx, scriptElm.src, "iv", true) === false) {

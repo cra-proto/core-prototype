@@ -172,12 +172,11 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
 
     "use strict";
 
-    let fileName = "", 
-        convertDomain = window.location.hostname, 
+    let convertDomain = globalThis.location.hostname, 
         resultArea = document.getElementById("sourcetext"), 
         getQueryEl = function getQueryEl(field) {
             // Get a querystring value
-            const params = new Proxy(new URLSearchParams(window.location.search), {
+            const params = new Proxy(new URLSearchParams(globalThis.location.search), {
                 get: (searchParams, prop) => searchParams.get(prop), 
             });
 
@@ -214,6 +213,33 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
             } else {
                 document.getElementById("githubsave").classList.remove("wb-inv");
             }
+        }, 
+        loadTemplate = async function loadTemplate(url, data) {
+            // Fetch the external HTML file content
+            const response = await fetch(url);
+            let htmlString, placeholder;
+             if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            htmlString = await response.text();
+            // Manually replace placeholders in the string with data
+            for (const key in data) {
+                if (Object.hasOwn(data, key) === true) {
+                    // Simple string replacement for ${key}
+                    placeholder = new RegExp(`\\\$\\\{${key}\\\}`, "g");
+                    htmlString = htmlString.replace(placeholder, data[key]);
+                }
+            }
+            return htmlString;
+        }, 
+        renderTemplate = function renderTemplate(template, data) {
+            // Create a function that takes 'frontData' and returns the evaluated template literal
+            let frontData = data.fmCode;
+            const templateFunction = new Function("frontData", `return \`${template}\``);
+            return templateFunction(frontData);
+        }, 
+        destroyClickedElement = function destroyClickedElement(event) {
+            document.body.childNode.remove(event.target);
         };
 
     // submit button
@@ -221,33 +247,8 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
         let htmlMain, targetURL, templateType, frontMatterType, 
             pageData = "", 
             convertObj = "", 
-            loadTemplate = async function loadTemplate(url, data) {
-                // Fetch the external HTML file content
-                const response = await fetch(url);
-                let htmlString, placeholder;
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                htmlString = await response.text();
-                // Manually replace placeholders in the string with data
-                for (const key in data) {
-                    if (Object.hasOwn(data, key) === true) {
-                        // Simple string replacement for ${key}
-                        placeholder = new RegExp(`\\\$\\\{${key}\\\}`, "g");
-                        htmlString = htmlString.replace(placeholder, data[key]);
-                    }
-                }
-                return htmlString;
-            }, 
-            renderTemplate = function renderTemplate(template, data) {
-                // Create a function that takes 'frontData' and returns the evaluated template literal
-                let frontData = data.fmCode;
-                const templateFunction = new Function("frontData", `return \`${template}\``);
-
-                return templateFunction(frontData);
-            }, 
-            formatResults = function formatResults(pageData, targetURL, fileName) {            
+            fileName = getFilenameFromUrl(targetURL.pathname), 
+            formatResults = function formatResults(pageData, targetURL) {            
                 let gitPathFilename, 
                     githubPath = "";
 
@@ -266,7 +267,6 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                         githubPath = githubPath + "/";
                     }
                 }
-                fileName = getFilenameFromUrl(targetURL.pathname);
                 document.getElementById("redirectfiletext").value = "    {\n      \"origin\": \"" + targetURL.origin + targetURL.pathname + "\", \n      \"destination\": \"" + encodeURI(githubPath + fileName) + "\"\n    }, \n";
             };
 
@@ -312,8 +312,8 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
 
             if (templateType === "") {
                 if (htmlMain !== "") {
-                    resultArea.value = "---\n" + pageData.fmCode + "---\n\n" + htmlMain.replace(new RegExp("([\r\n]+?\s+)(?=>)", "gm"), "");
-                    formatResults(pageData, targetURL, fileName);
+                    resultArea.value = "---\n" + pageData.fmCode + "---\n\n" + htmlMain.replaceAll(new RegExp("([\r\n]+?\s+)(?=>)", "gm"), "");
+                    formatResults(pageData, targetURL);
                 }
             } else {
                 // Use the function to load, process, and display the CDTS template
@@ -322,7 +322,7 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                 loadTemplate(templateType, pageData)
                     .then(function processHTML(finalHTML) {
                         resultArea.value = renderTemplate(finalHTML, pageData);
-                        formatResults(pageData, targetURL, fileName);
+                        formatResults(pageData, targetURL);
                     })
                     .catch(function errMSG(error) {
                         console.error("Could not load the template:", error);
@@ -427,7 +427,7 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
 
         if (page_url !== null && page_url !== "") {
             document.getElementById("uri").value = decodeURIComponent(page_url);
-            evt.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            evt.initMouseEvent("click", true, true, globalThis, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
             cb.dispatchEvent(evt);
         } else {
             showSaveBtn();        
@@ -443,7 +443,7 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
     });
 
     document.getElementById("githubsave").addEventListener("click", function (e) {
-        let fileName, 
+        let fileName = getFilename(), 
             saveTextAsFile = function saveTextAsFile() {
                 let textToWrite = resultArea.value, 
                     textFileAsBlob = new Blob([textToWrite], {
@@ -454,23 +454,18 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
                 downloadLink.download = fileName;
                 downloadLink.innerHTML = "Download File";
 
-                if (window.webkitURL != null) {
-                    // Chrome allows the link to be clicked without being added to the document
-                    downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-                } else {
+                if (globalThis.webkitURL === null) {
                     // Firefox requires the link to be added to the document
-                    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                    downloadLink.href = globalThis.URL.createObjectURL(textFileAsBlob);
                     downloadLink.onclick = destroyClickedElement;
                     downloadLink.style.display = "none";
                     document.body.appendChild(downloadLink);
+                } else {
+                    // Chrome allows the link to be clicked without being added to the document
+                    downloadLink.href = globalThis.webkitURL.createObjectURL(textFileAsBlob);
                 }
                 downloadLink.click();
-            }, 
-            destroyClickedElement = function destroyClickedElement(event) {
-                document.body.removeChild(event.target);
             };
-
-        fileName = getFilename();
 
         if (fileName !== "" && resultArea.value !== "") {
             saveTextAsFile();
