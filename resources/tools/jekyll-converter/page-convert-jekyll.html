@@ -247,10 +247,10 @@ script: https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2
         let htmlMain, targetURL, templateType, frontMatterType, 
             pageData = "", 
             convertObj = "", 
-            fileName = getFilenameFromUrl(targetURL.pathname), 
             formatResults = function formatResults(pageData, targetURL) {            
                 let gitPathFilename, 
-                    githubPath = "";
+                    githubPath = "", 
+                    fileName = getFilenameFromUrl(targetURL.pathname);
 
                 resultArea.select();
                 resultArea.scrollTop = 0;
