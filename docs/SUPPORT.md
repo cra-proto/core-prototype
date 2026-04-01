@@ -136,9 +136,9 @@ secondarymenu:                                     # Adds a right column seconda
        link: ""
 
 # [application] layout specific settings
-applicationName: "Canada Revenue Agency (CRA)"    # Sets the title of the bar at the top of the application layout for the page
+applicationName: "Canada Revenue Agency (CRA)"     # Sets the title of the bar at the top of the application layout for the page
 applicationURL: "https://www.canada.ca/en/revenue-agency.html"   # Sets the URL of link in the bar at the top of the application layout for the page
-infoBanner:                                       # Sets a Banner at the top of the page and its elements
+infoBanner:                                        # Sets a Banner at the top of the page and its elements
   - title: ""
     message: ""
     link:
@@ -152,11 +152,12 @@ infoBanner:                                       # Sets a Banner at the top of 
 
 ```yaml
 ---
-testBanner: [true | false]                        # Toggles if the testing site only banner shows for a page (deafult: true)
+testBanner: [true | false]                         # Toggles if the testing site only banner shows for a page (deafult: true)
 notedlinks:                                        # Configures and adds links of your choice to the testing site only banner for a page
   - title: "The link title"
     link: "The link URL"
-keywords: ""                                      # Displays these keywords to be associated to the page
+keywords: ""                                       # Displays these keywords to be associated to the page
+robots: "noindex, nofollow"                        # Default value to use on the page for the robots meta tag
 ---
 ```
 
@@ -222,6 +223,7 @@ exitPage:                                          # Identifies the links to the
 externalOrigin: "https://domain"                   # The domain will be prepended to all links on all pages where the link starts with "/"
 modifiedLinkList: "JSON link file URL"             # The path and filename of a JSON file with links that over ride the exit links and redirect the designated URLs to a specified page
 relativeExternalLinks: [true | false]              # Identifies whether links to the exit intent page will be generated from relative links where the link starts with "/"
+robots: "noindex, nofollow"                        # Default value to use site wide for the robots meta tag
 ---
 ```
 
