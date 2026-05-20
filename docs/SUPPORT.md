@@ -215,7 +215,7 @@ developerOptions: [true | false]                   # Turns the developer options
 devOptionsLocStore: "gitCRATemplateDevOptions"     # Sets the localStorage key name that is used to store the boolean value trigger if the developer options are on/off
 testBanner: [true | false]                         # Toggles the site wide banner off and on for the site
 
-exitByURL: [true | false]                          # Toggles if the exit page uses the developed method or if it uses the WET Exit plugin. Default is true
+exitByURL: [true | false]                          # Toggles if the exit page uses the developed method (false) or if it uses the WET Exit plugin (true). Note that the WET Exit plugin may be increase the processing time for the script to execute on the page.   Default is true
 exitPage:                                          # Identifies the links to the exit intent page used for link generation on all pages
   en: "English exit intent page URL"
   fr: "French exit intent page URL"
