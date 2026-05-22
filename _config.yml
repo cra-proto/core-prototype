@@ -2,7 +2,7 @@
 # standard jekyll configuration
 content_editable: true
 baseurl: /core-prototype
-url: https://cra-proto.github.io
+url: https://cra-test-arc.canada.ca
 repository: cra-proto/core-prototype
 website: https://www.canada.ca/en.html
 
