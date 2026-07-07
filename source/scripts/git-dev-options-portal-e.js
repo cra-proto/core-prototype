@@ -36,6 +36,10 @@ let notedLinksArr, pageOrigin,
             case pageURL.indexOf(".alpha.canada.ca/") > -1:
                 githubURL = pageURL.toString().replace(new RegExp("^https:\/\/design\.cra-arc\.alpha\.canada\.ca\/(.*?)\/((?:.*)(?=\/))?(\/?.*\..+)?"), "https:\/\/github\.com\/alpha-canada-ca\/cra-ucd-guide\/blob\/main\/$1\/$2$3" + pageName);
                 break;
+            // Generate GitHub.com URL's from cra-test-arc.canada.ca URL's
+            case pageURL.indexOf("://cra-test-arc.canada.ca/") > -1:
+                githubURL = pageURL.toString().replace(new RegExp("^https:\/\/cra-test-arc\.canada\.ca\/(.*?)\/((?:.*)(?=\/))?(\/?.*\..+)?"), "https:\/\/github\.com\/cra-proto\/$1\/blob\/master\/$2$3" + pageName);
+                break;
         }
         if (githubURL !== null) {
             return githubURL;
@@ -95,7 +99,6 @@ let notedLinksArr, pageOrigin,
                                 document.querySelector("mat-drawer-content").innerHTML = localStorage.getItem(pageKey);
                             }
                             ed.execCommand("mceVisualBlocks");
-                           // ed.target.hide();
                         }, 
                         setup: function (ed) {
                             ed.on("input Change", function (e) {
@@ -138,7 +141,6 @@ let notedLinksArr, pageOrigin,
                 gitURL = getGithubURL(window.location.origin + window.location.pathname);
                 pageInfo = "<div id=\"devtoolbar\" class=\"pull-right mrgn-rght-md\">\n    <ul class=\"btn-toolbar list-inline\" role=\"toolbar\">\n        <li id=\"editBtnGrp\" class=\"btn-group margin-right-10px\">";
                 pageInfo = pageInfo + "<button id=\"editBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"\" title=\"Edit\"><span id=\"editIcon\" class=\"glyphicon glyphicon-edit mrgn-tp-sm\"></span><span id=\"iconText\" class=\"wb-inv quartz-invisible\">Edit</span></button>";
-
                 pageInfo = pageInfo + "<button id=\"deleteChangeBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed";
                 if (localStorage.getItem(pageKey) === null) {
                     pageInfo = pageInfo + " hidden";
@@ -257,19 +259,15 @@ let notedLinksArr, pageOrigin,
                                     editStartContent = "";
                                 }
                                 editArea.contentEditable = "false";
-                               // tinymce.activeEditor.execCommand("mceVisualBlocks");
-                               // tinymce.activeEditor.hide();
                                 tinymce.remove();
                                 setEditButton();
-                               // document.designMode = "off";
+                                // document.designMode = "off";
                             } else {
                                 tinyMCEInit();
                                 editArea.contentEditable = "true";
-                               // tinymce.activeEditor.execCommand("mceVisualBlocks");
-                               // tinymce.activeEditor.show();
                                 editStartContent = editArea.innerHTML;
                                 setStopEditButton();
-                               // document.designMode = "on";
+                                // document.designMode = "on";
                             }
                         }
                         void 0;
@@ -334,7 +332,6 @@ let notedLinksArr, pageOrigin,
                                     subhead.style.background = "black";
                                     subhead.style.color = "white";
                                     subhead.style.padding = "10px 20px";
-                                    // frameContainer.style.width = sizedata.width;
                                     frameContainer.appendChild(subhead);
                                     iframe.src = pageURL;
                                     iframe.sandbox = "allow-scripts";
