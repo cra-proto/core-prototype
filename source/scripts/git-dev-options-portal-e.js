@@ -131,7 +131,11 @@ let notedLinksArr, pageOrigin,
                         relative_urls: false, 
                         entity_encoding: "raw", 
                         importcss_append: true, 
-                        
+                        verify_html: false, 
+                        cleanup: false, 
+                        custom_elements: "mat-icon,mat-card,mat-card-header,mat-card-title,mat-card-content,mat-card-actions,mat-chip,mat-chip-set,mat-list,mat-list-item,mat-divider,mat-button,mat-checkbox,mat-radio-button,mat-select,mat-form-field,mat-label,mat-hint,mat-expansion-panel,mat-expansion-panel-header,mat-panel-title,mat-panel-description,mat-tab-group,mat-tab,mat-toolbar,mat-sidenav,mat-slider,mat-progress-spinner,mat-progress-bar", 
+                        extended_valid_elements: "app-*[*],quartz-*[*],mat-*[*],div[*],span[*],button[*],a[*],i[*]",
+                        valid_children: "+body[style],+body[script],+mat-card[mat-card-header|mat-card-content|mat-card-actions],+mat-list[mat-list-item],+mat-form-field[mat-label|mat-hint|input|mat-select]",
                         content_css: "https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/theme.min.css", 
                         selector: "mat-drawer-content"
                     });
