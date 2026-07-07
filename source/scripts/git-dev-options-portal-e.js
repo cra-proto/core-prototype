@@ -131,6 +131,7 @@ let notedLinksArr, pageOrigin,
                         relative_urls: false, 
                         entity_encoding: "raw", 
                         importcss_append: true, 
+                        
                         content_css: "https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/theme.min.css", 
                         selector: "mat-drawer-content"
                     });
