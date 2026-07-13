@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function initDevOpts(event) {
                             ed.execCommand("mceVisualBlocks");
                         }, 
                         setup: function (ed) {
-                            ed.on("input Change", function (e) {
+                            ed.on("input Change NodeChange keyup", function (e) {
                                 if (e.originalEvent === undefined || ("command" in e.originalEvent === false && ("focusedEditor" in e.originalEvent === true && e.originalEvent.focusedEditor !== null)) || ("command" in e.originalEvent === true && e.originalEvent.command !== "mceVisualBlocks" && e.originalEvent.command !== "mceVisualChars")) {
                                     switch (document.querySelector("main").innerHTML) {
                                         case pageOrigin:
