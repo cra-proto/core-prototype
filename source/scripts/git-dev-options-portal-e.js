@@ -92,19 +92,42 @@ let notedLinksArr, pageOrigin,
                         promotion: false, 
                         license_key: "gpl", 
                         init_instance_callback: function (ed) {
-                            pageOrigin = document.querySelector("mat-drawer-content").innerHTML;
+                            var container = document.querySelector("#editable-page-wrapper");
+                            if (container !== null && container !== undefined) {
+                                var cleanOrigin = ed.getCleanHTML(container);
+                                ed.options.set("pageOriginContent", cleanOrigin);
 
-                            // Load modified page content if it exists from local Storage
-                            if (localStorage.getItem(pageKey)) {
-                                document.querySelector("mat-drawer-content").innerHTML = localStorage.getItem(pageKey);
+                                // Load modified page content if it exists from local Storage
+                                var cachedContent = localStorage.getItem(pageKey);
+                                if (cachedContent !== null && cachedContent !== undefined) {
+                                    ed.setContent(cachedContent);
+                                }
+                                ed.execCommand("mceVisualBlocks");
+                                // ed.target.hide();
                             }
-                            ed.execCommand("mceVisualBlocks");
                         }, 
                         setup: function (ed) {
-                            ed.on("input Change", function (e) {
+                                ed.getCleanHTML = function(element) {
+                                    if (element === null || element === undefined) {
+                                        return "";
+                                    }
+                                    var clone = element.cloneNode(true);
+                                    var bookmarks = clone.querySelectorAll(".mce-item-bookmark, [data-mce-bogus]");
+                                    for (var i = 0; i < bookmarks.length; i = i + 1) {
+                                        bookmarks[i].remove();
+                                    }
+                                    return clone.innerHTML.trim();
+                                };
+
+                            ed.on("input Change NodeChange keyup", function (e) {
                                 if (e.originalEvent === undefined || ("command" in e.originalEvent === false && ("focusedEditor" in e.originalEvent === true && e.originalEvent.focusedEditor !== null)) || ("command" in e.originalEvent === true && e.originalEvent.command !== "mceVisualBlocks" && e.originalEvent.command !== "mceVisualChars")) {
-                                    switch (document.querySelector("mat-drawer-content").innerHTML) {
-                                        case pageOrigin:
+
+                                    var container = document.querySelector("#editable-page-wrapper"), 
+                                        currentHTML = ed.getCleanHTML(container), 
+                                        originHTML = ed.options.get("pageOriginContent");
+
+                                    switch (currentHTML) {
+                                        case originHTML:
                                             localStorage.removeItem(pageKey);
                                             pageStorage = null;
                                             document.getElementById("deleteChangeBtn").classList.add("hidden");
@@ -131,13 +154,14 @@ let notedLinksArr, pageOrigin,
                         relative_urls: false, 
                         entity_encoding: "raw", 
                         importcss_append: true, 
-                        verify_html: false, 
-                        cleanup: false, 
+                        verify_html: true, 
+                        cleanup: true, 
+                        valid_elements: "*[*]", 
                         custom_elements: "mat-icon,mat-card,mat-card-header,mat-card-title,mat-card-content,mat-card-actions,mat-chip,mat-chip-set,mat-list,mat-list-item,mat-divider,mat-button,mat-checkbox,mat-radio-button,mat-select,mat-form-field,mat-label,mat-hint,mat-expansion-panel,mat-expansion-panel-header,mat-panel-title,mat-panel-description,mat-tab-group,mat-tab,mat-toolbar,mat-sidenav,mat-slider,mat-progress-spinner,mat-progress-bar", 
                         extended_valid_elements: "app-*[*],quartz-*[*],mat-*[*],div[*],span[*],button[*],a[*],i[*]",
                         valid_children: "+body[style],+body[script],+mat-card[mat-card-header|mat-card-content|mat-card-actions],+mat-list[mat-list-item],+mat-form-field[mat-label|mat-hint|input|mat-select]",
                         content_css: "https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/theme.min.css", 
-                        selector: "mat-drawer-content"
+                        selector: "#editable-page-wrapper"
                     });
                 };
 
