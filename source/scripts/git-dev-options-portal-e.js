@@ -233,7 +233,7 @@ let notedLinksArr, pageOrigin,
                 }
 
                 if (gitURL !== "") {
-                    pageInfo = pageInfo + "        <li id=\"githubBtnGrp\" class=\"btn-group margin-right-10px\"><a id=\"githubBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"Go to GitHub source\" target=\"_blank\"><span class=\"fab fa-github mrgn-tp-sm\"></span><span class=\"wb-inv quartz-invisible\">Go to GitHub source</span></a></li>\n";
+                    pageInfo = pageInfo + "        <li id=\"githubBtnGrp\" class=\"btn-group margin-right-10px\"><a id=\"githubBtn\" class=\"btn-default back-button mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"Go to GitHub source\" target=\"_blank\"><span class=\"fab fa-github mrgn-tp-sm\"></span><span class=\"wb-inv quartz-invisible\">Go to GitHub source</span></a></li>\n";
                 }
 
                 pageInfo = pageInfo + "    </ul>\n</div>\n";
