@@ -169,13 +169,13 @@ let notedLinksArr, pageOrigin,
             if (insertElm !== null) {
                 gitURL = getGithubURL(window.location.origin + window.location.pathname);
                 pageInfo = "<div id=\"devtoolbar\" class=\"pull-right margin-right-10px\">\n    <ul class=\"btn-toolbar list-inline\" role=\"toolbar\">\n        <li id=\"editBtnGrp\" class=\"btn-group margin-right-10px\">";
-                pageInfo = pageInfo + "<button id=\"editBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"\" title=\"Edit\"><span id=\"editIcon\" class=\"glyphicon glyphicon-edit margin-top-5px\"></span><span id=\"iconText\" class=\"wb-inv quartz-invisible\">Edit</span></button>";
+                pageInfo = pageInfo + "<button id=\"editBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"\" title=\"Edit\"><span id=\"editIcon\" class=\"glyphicon glyphicon-edit\"></span><span id=\"iconText\" class=\"wb-inv quartz-invisible\">Edit</span></button>";
                 pageInfo = pageInfo + "<button id=\"deleteChangeBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed";
                 if (localStorage.getItem(pageKey) === null) {
                     pageInfo = pageInfo + " hidden";
                 }
 
-                pageInfo = pageInfo + "\" title=\"Remove edits\" href=\"#\"><span class=\"glyphicon glyphicon-trash margin-top-5px\"></span><span class=\"wb-inv quartz-invisible\">Remove edits</span></button>";
+                pageInfo = pageInfo + "\" title=\"Remove edits\" href=\"#\"><span class=\"glyphicon glyphicon-trash\"></span><span class=\"wb-inv quartz-invisible\">Remove edits</span></button>";
                 pageInfo = pageInfo + "</li>\n";
                 if (notedLinksList !== null && notedLinksList.value !== "") {
                     notedLinksArr = JSON.parse(notedLinksList.value);
@@ -222,18 +222,18 @@ let notedLinksArr, pageOrigin,
                     metadataInfo = metadataInfo + "<p class=\"margin-bottom-5px\"><strong>Date issued</strong>:&nbsp;" + issueDateElm.content.trim() + "</p>\n";
                 }
 
-                pageInfo = pageInfo + "        <li id=\"resBtnGrp\" class=\"btn-group margin-right-10px\"><button id=\"resolutionBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"View page at different WET resolution widths\" target=\"_blank\"><span class=\"glyphicon glyphicon-resize-horizontal margin-top-5px\"></span><span class=\"wb-inv quartz-invisible\">View page at different WET resolution widths</span></button></li>\n";
+                pageInfo = pageInfo + "        <li id=\"resBtnGrp\" class=\"btn-group margin-right-10px\"><button id=\"resolutionBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"View page at different WET resolution widths\" target=\"_blank\"><span class=\"glyphicon glyphicon-resize-horizontal\"></span><span class=\"wb-inv quartz-invisible\">View page at different WET resolution widths</span></button></li>\n";
 
                 if (gitURL !== "") {
-                    githubLinkInfo = githubLinkInfo + "        <p><a id=\"githubOverlayBtn\" data-exit=\"false\" href=\"#\" target=\"_blank\"><span class=\"fab fa-github margin-top-5px margin-right-5px\"></span>Go to GitHub source</a></p>\n";
+                    githubLinkInfo = githubLinkInfo + "        <p><a id=\"githubOverlayBtn\" data-exit=\"false\" href=\"#\" target=\"_blank\"><span class=\"fab fa-github margin-right-5px\"></span>Go to GitHub source</a></p>\n";
                 }
 
                 if (notedLinkInfo + githubLinkInfo + metadataInfo !== "") {
-                    pageInfo = pageInfo + "        <li id=\"pageInfoBtnGrp\" class=\"btn-group margin-right-10px\"><button id=\"pageInfoBtn\" popovertarget=\"dev-page-info\" type=\"button\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed wb-lbx\" data-exit=\"false\" href=\"#dev-page-info\" aria-controls=\"dev-page-info\" role=\"button\" title=\"Page information\"><span class=\"glyphicon glyphicon-info-sign margin-top-5px\"></span><span class=\"wb-inv quartz-invisible\">Page information</span></button></li>\n";
+                    pageInfo = pageInfo + "        <li id=\"pageInfoBtnGrp\" class=\"btn-group margin-right-10px\"><button id=\"pageInfoBtn\" popovertarget=\"dev-page-info\" type=\"button\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed wb-lbx\" data-exit=\"false\" href=\"#dev-page-info\" aria-controls=\"dev-page-info\" role=\"button\" title=\"Page information\"><span class=\"glyphicon glyphicon-info-sign\"></span><span class=\"wb-inv quartz-invisible\">Page information</span></button></li>\n";
                 }
 
                 if (gitURL !== "") {
-                    pageInfo = pageInfo + "        <li id=\"githubBtnGrp\" class=\"btn-group margin-right-10px\"><a id=\"githubBtn\" class=\"btn-default back-button mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"Go to GitHub source\" target=\"_blank\"><span class=\"fab fa-github margin-top-5px\"></span><span class=\"wb-inv quartz-invisible\">Go to GitHub source</span></a></li>\n";
+                    pageInfo = pageInfo + "        <li id=\"githubBtnGrp\" class=\"btn-group margin-right-10px\"><a id=\"githubBtn\" class=\"btn-default back-button mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"Go to GitHub source\" target=\"_blank\"><span class=\"fab fa-github\"></span><span class=\"wb-inv quartz-invisible\">Go to GitHub source</span></a></li>\n";
                 }
 
                 pageInfo = pageInfo + "    </ul>\n</div>\n";
