@@ -168,21 +168,21 @@ let notedLinksArr, pageOrigin,
             // Add toolbar and buttons
             if (insertElm !== null) {
                 gitURL = getGithubURL(window.location.origin + window.location.pathname);
-                pageInfo = "<div id=\"devtoolbar\" class=\"pull-right mrgn-rght-md\">\n    <ul class=\"btn-toolbar list-inline\" role=\"toolbar\">\n        <li id=\"editBtnGrp\" class=\"btn-group margin-right-10px\">";
-                pageInfo = pageInfo + "<button id=\"editBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"\" title=\"Edit\"><span id=\"editIcon\" class=\"glyphicon glyphicon-edit mrgn-tp-sm\"></span><span id=\"iconText\" class=\"wb-inv quartz-invisible\">Edit</span></button>";
+                pageInfo = "<div id=\"devtoolbar\" class=\"pull-right margin-right-10px\">\n    <ul class=\"btn-toolbar list-inline\" role=\"toolbar\">\n        <li id=\"editBtnGrp\" class=\"btn-group margin-right-10px\">";
+                pageInfo = pageInfo + "<button id=\"editBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"\" title=\"Edit\"><span id=\"editIcon\" class=\"glyphicon glyphicon-edit margin-top-5px\"></span><span id=\"iconText\" class=\"wb-inv quartz-invisible\">Edit</span></button>";
                 pageInfo = pageInfo + "<button id=\"deleteChangeBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed";
                 if (localStorage.getItem(pageKey) === null) {
                     pageInfo = pageInfo + " hidden";
                 }
 
-                pageInfo = pageInfo + "\" title=\"Remove edits\" href=\"#\"><span class=\"glyphicon glyphicon-trash mrgn-tp-sm\"></span><span class=\"wb-inv quartz-invisible\">Remove edits</span></button>";
+                pageInfo = pageInfo + "\" title=\"Remove edits\" href=\"#\"><span class=\"glyphicon glyphicon-trash margin-top-5px\"></span><span class=\"wb-inv quartz-invisible\">Remove edits</span></button>";
                 pageInfo = pageInfo + "</li>\n";
                 if (notedLinksList !== null && notedLinksList.value !== "") {
                     notedLinksArr = JSON.parse(notedLinksList.value);
                     if ((notedLinksArr.length === 1 && notedLinksArr[0].sourcetitle.trim() !== "") || notedLinksArr.length > 1) {
-                        notedLinkInfo = "<h3 class=\"mrgn-tp-sm\">Noted links</h3>\n<ol id=\"notedpages-links\" class=\"list-inline mrgn-bttm-0\">\n";
+                        notedLinkInfo = "<h3 class=\"margin-top-5px\">Noted links</h3>\n<ol id=\"notedpages-links\" class=\"list-inline margin-bottom-0px\">\n";
                         notedLinksArr.forEach(function addNotedLinks(notedLinksData) {
-                           notedLinkInfo = notedLinkInfo + "<li><span class=\"glyphicon glyphicon-link mrgn-rght-sm\"></span><a data-exit=\"false\" href=\"" + notedLinksData.sourcelink + "\" target=\"_blank\">" + notedLinksData.sourcetitle + "</a></li>\n";
+                           notedLinkInfo = notedLinkInfo + "<li><span class=\"glyphicon glyphicon-link margin-right-5px\"></span><a data-exit=\"false\" href=\"" + notedLinksData.sourcelink + "\" target=\"_blank\">" + notedLinksData.sourcetitle + "</a></li>\n";
                         });
                         notedLinkInfo = notedLinkInfo + "</ol>\n";
                     }
@@ -190,50 +190,50 @@ let notedLinksArr, pageOrigin,
 
                 titleElm = document.querySelector("meta[name=dcterms\\.title]");
                 if (titleElm !== null && "content" in titleElm === true && titleElm.content.trim() !== "") {
-                    metadataInfo = metadataInfo + "<p class=\"mrgn-bttm-sm\"><strong>Title</strong>:&nbsp;" + titleElm.content.trim() + "</p>\n";
+                    metadataInfo = metadataInfo + "<p class=\"margin-bottom-5px\"><strong>Title</strong>:&nbsp;" + titleElm.content.trim() + "</p>\n";
                 }
 
                 subjectElm = document.querySelector("meta[name=dcterms\\.subject]");
                 if (subjectElm !== null && "content" in subjectElm === true && subjectElm.content.trim() !== "") {
-                    metadataInfo = metadataInfo + "<p class=\"mrgn-bttm-sm\"><strong>Subject</strong>:&nbsp;" + subjectElm.content.trim() + "</p>\n";
+                    metadataInfo = metadataInfo + "<p class=\"margin-bottom-5px\"><strong>Subject</strong>:&nbsp;" + subjectElm.content.trim() + "</p>\n";
                 }
 
                 descriptionElm = document.querySelector("meta[name=dcterms\\.description]");
                 if (descriptionElm !== null && "content" in descriptionElm === true && descriptionElm.content.trim() !== "") {
-                    metadataInfo = metadataInfo + "<p class=\"mrgn-bttm-sm\"><strong>Description</strong>:&nbsp;" + descriptionElm.content.trim() + "</p>\n";
+                    metadataInfo = metadataInfo + "<p class=\"margin-bottom-5px\"><strong>Description</strong>:&nbsp;" + descriptionElm.content.trim() + "</p>\n";
                 }
 
                 if (keywords !== null && keywords.value.trim() !== "") {
-                    metadataInfo = metadataInfo + "<p><strong>Keywords</strong>:&nbsp;<span id=\"pageKeywords\" class=\"mrgn-lft-sm\">" + keywords.value + "</span></p>";
+                    metadataInfo = metadataInfo + "<p><strong>Keywords</strong>:&nbsp;<span id=\"pageKeywords\" class=\"margin-left-5px\">" + keywords.value + "</span></p>";
                 } else {
                     keywordsElm = document.querySelector("meta[name=dcterms\\.keywords]");
                     if (keywordsElm !== null && "content" in keywordsElm === true && keywordsElm.content.trim() !== "") {
-                        metadataInfo = metadataInfo + "<p class=\"mrgn-bttm-sm\"><strong>Keywords</strong>:&nbsp;" + keywordsElm.content.trim() + "</p>\n";
+                        metadataInfo = metadataInfo + "<p class=\"margin-bottom-5px\"><strong>Keywords</strong>:&nbsp;" + keywordsElm.content.trim() + "</p>\n";
                     }
                 }
 
                 modifyDateElm = document.querySelector("meta[name=dcterms\\.modified]");
                 if (modifyDateElm !== null && "content" in modifyDateElm === true && modifyDateElm.content.trim() !== "") {
-                    metadataInfo = metadataInfo + "<p class=\"mrgn-bttm-sm\"><strong>Date modified</strong>:&nbsp;" + modifyDateElm.content.trim() + "</p>\n";
+                    metadataInfo = metadataInfo + "<p class=\"margin-bottom-5px\"><strong>Date modified</strong>:&nbsp;" + modifyDateElm.content.trim() + "</p>\n";
                 }
 
                 issueDateElm = document.querySelector("meta[name=dcterms\\.issued]");
                 if (issueDateElm !== null && "content" in issueDateElm === true && issueDateElm.content.trim() !== "") {
-                    metadataInfo = metadataInfo + "<p class=\"mrgn-bttm-sm\"><strong>Date issued</strong>:&nbsp;" + issueDateElm.content.trim() + "</p>\n";
+                    metadataInfo = metadataInfo + "<p class=\"margin-bottom-5px\"><strong>Date issued</strong>:&nbsp;" + issueDateElm.content.trim() + "</p>\n";
                 }
 
-                pageInfo = pageInfo + "        <li id=\"resBtnGrp\" class=\"btn-group margin-right-10px\"><button id=\"resolutionBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"View page at different WET resolution widths\" target=\"_blank\"><span class=\"glyphicon glyphicon-resize-horizontal mrgn-tp-sm\"></span><span class=\"wb-inv quartz-invisible\">View page at different WET resolution widths</span></button></li>\n";
+                pageInfo = pageInfo + "        <li id=\"resBtnGrp\" class=\"btn-group margin-right-10px\"><button id=\"resolutionBtn\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"View page at different WET resolution widths\" target=\"_blank\"><span class=\"glyphicon glyphicon-resize-horizontal margin-top-5px\"></span><span class=\"wb-inv quartz-invisible\">View page at different WET resolution widths</span></button></li>\n";
 
                 if (gitURL !== "") {
-                    githubLinkInfo = githubLinkInfo + "        <p><a id=\"githubOverlayBtn\" data-exit=\"false\" href=\"#\" target=\"_blank\"><span class=\"fab fa-github mrgn-tp-sm mrgn-rght-sm\"></span>Go to GitHub source</a></p>\n";
+                    githubLinkInfo = githubLinkInfo + "        <p><a id=\"githubOverlayBtn\" data-exit=\"false\" href=\"#\" target=\"_blank\"><span class=\"fab fa-github margin-top-5px margin-right-5px\"></span>Go to GitHub source</a></p>\n";
                 }
 
                 if (notedLinkInfo + githubLinkInfo + metadataInfo !== "") {
-                    pageInfo = pageInfo + "        <li id=\"pageInfoBtnGrp\" class=\"btn-group margin-right-10px\"><button id=\"pageInfoBtn\" popovertarget=\"dev-page-info\" type=\"button\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed wb-lbx\" data-exit=\"false\" href=\"#dev-page-info\" aria-controls=\"dev-page-info\" role=\"button\" title=\"Page information\"><span class=\"glyphicon glyphicon-info-sign mrgn-tp-sm\"></span><span class=\"wb-inv quartz-invisible\">Page information</span></button></li>\n";
+                    pageInfo = pageInfo + "        <li id=\"pageInfoBtnGrp\" class=\"btn-group margin-right-10px\"><button id=\"pageInfoBtn\" popovertarget=\"dev-page-info\" type=\"button\" class=\"btn-default mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed wb-lbx\" data-exit=\"false\" href=\"#dev-page-info\" aria-controls=\"dev-page-info\" role=\"button\" title=\"Page information\"><span class=\"glyphicon glyphicon-info-sign margin-top-5px\"></span><span class=\"wb-inv quartz-invisible\">Page information</span></button></li>\n";
                 }
 
                 if (gitURL !== "") {
-                    pageInfo = pageInfo + "        <li id=\"githubBtnGrp\" class=\"btn-group margin-right-10px\"><a id=\"githubBtn\" class=\"btn-default back-button mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"Go to GitHub source\" target=\"_blank\"><span class=\"fab fa-github mrgn-tp-sm\"></span><span class=\"wb-inv quartz-invisible\">Go to GitHub source</span></a></li>\n";
+                    pageInfo = pageInfo + "        <li id=\"githubBtnGrp\" class=\"btn-group margin-right-10px\"><a id=\"githubBtn\" class=\"btn-default back-button mdc-button mat-mdc-button-base quartz-button quartz-secondary-button mat-mdc-button mat-unthemed\" data-exit=\"false\" href=\"#\" title=\"Go to GitHub source\" target=\"_blank\"><span class=\"fab fa-github margin-top-5px\"></span><span class=\"wb-inv quartz-invisible\">Go to GitHub source</span></a></li>\n";
                 }
 
                 pageInfo = pageInfo + "    </ul>\n</div>\n";
@@ -246,7 +246,7 @@ let notedLinksArr, pageOrigin,
                         overlaySec = overlaySec + "\n<hr>\n";
                     }
                     if (metadataInfo !== "") {
-                        overlaySec = overlaySec + "<h3 class=\"mrgn-tp-sm mrgn-bttm-md\">Metadata</h3>\n" + metadataInfo;
+                        overlaySec = overlaySec + "<h3 class=\"margin-top-5px margin-bottom-10px\">Metadata</h3>\n" + metadataInfo;
                     }
                     overlaySec = overlaySec + "</div><mat-dialog-actions class=\"mat-mdc-dialog-actions mdc-dialog__actions ng-star-inserted\"><quartz-secondary-button mat-dialog-close=\"\" type=\"button\"><button mat-button=\"\" class=\"quartz-button quartz-secondary-button mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base\" type=\"\" name=\"\" value=\"\"><span class=\"mat-mdc-button-persistent-ripple mdc-button__ripple\"></span><span class=\"mdc-button__label\">Close</span><span class=\"mat-mdc-focus-indicator\"></span><span class=\"mat-mdc-button-touch-target\"></span></button></quartz-secondary-button></mat-dialog-actions></mat-dialog-content></div></quartz-dialog-content></div></div></mat-dialog-container><div tabindex=\"0\" class=\"cdk-visually-hidden cdk-focus-trap-anchor\" aria-hidden=\"true\"></div></div>\n";
                     let infoOverlayElm = document.querySelector("div.cdk-overlay-container");
