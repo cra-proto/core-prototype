@@ -6,7 +6,7 @@
  * Cookie for developer option
  * # Custom settings
 developerOptions: true
-exitPage: "https://cra-design.github.io/gst-hst-business/exit-intent.html"
+exitPage: "https://cra-test-arc.canada.ca/gst-hst-business/exit-intent.html"
 externalOrigin: "https://www.canada.ca"
 relativeExternalLinks: false
 
@@ -20,7 +20,7 @@ exitByURL: false
  * 
  */
 
-//  exitPage.value = "https://cra-design.github.io/gst-hst-business/exit-intent.html",
+//  exitPage.value = "https://cra-test-arc.canada.ca/gst-hst-business/exit-intent.html",
 //  exitPage.dataset.exitByUrl = "false",
 //  relExternalLnk.value = "false",
 //  relExternalLnk.dataset.origin = "https://www.canada.ca",
