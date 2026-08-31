@@ -34,14 +34,29 @@
         }
     }
 
+    function checkQueryStringTriggers() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var treeParam = urlParams.get("tree");
+        var actionParam = urlParams.get("action");
+
+        if (treeParam === "expand" || actionParam === "expandall") {
+            triggerGlobalExpansion(true);
+        }
+        if (treeParam === "collapse" || actionParam === "collapseall") {
+            triggerGlobalExpansion(false);
+        }
+    }
+
     document.addEventListener("wb-ready.wb", function () {
         initializeAllTrees();
         initializeTreeButtons();
+        checkQueryStringTriggers();
     });
 
     document.addEventListener("wet-boew-ready", function () {
         initializeAllTrees();
         initializeTreeButtons();
+        checkQueryStringTriggers();
     });
 
     function triggerGlobalExpansion(shouldExpand) {
