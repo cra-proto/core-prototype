@@ -49,20 +49,33 @@
         var i = 0;
         while (i < trees.length) {
             var treeNode = trees[i];
-            var treeItems = treeNode.querySelectorAll("[role=\"treeitem\"]");
-            var j = 0;
-            while (j < treeItems.length) {
-                var itemNode = treeItems[j];
-                var hasGroup = itemNode.querySelector("[role=\"group\"], ul");
-                if (hasGroup) {
-                    if (shouldExpand) {
+
+            if (shouldExpand) {
+                var treeItems = treeNode.querySelectorAll("[role=\"treeitem\"]");
+                var j = 0;
+                while (j < treeItems.length) {
+                    var itemNode = treeItems[j];
+                    var hasGroup = itemNode.querySelector("[role=\"group\"], ul");
+                    if (hasGroup) {
                         itemNode.setAttribute("aria-expanded", "true");
-                    } else {
-                        itemNode.setAttribute("aria-expanded", "false");
                     }
+                    j = j + 1;
                 }
-                j = j + 1;
+            } else {
+                var rootItems = treeNode.children;
+                var k = 0;
+                while (k < rootItems.length) {
+                    var rootItemNode = rootItems[k];
+                    if (rootItemNode.tagName.toLowerCase() === "li") {
+                        var hasRootGroup = rootItemNode.querySelector("[role=\"group\"], ul");
+                        if (hasRootGroup) {
+                            rootItemNode.setAttribute("aria-expanded", "false");
+                        }
+                    }
+                    k = k + 1;
+                }
             }
+
             if (treeNode._treeInstance) {
                 updateVisibleTreeitems(treeNode._treeInstance);
             }
