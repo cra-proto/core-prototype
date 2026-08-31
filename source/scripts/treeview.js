@@ -455,27 +455,31 @@
         }
     }
 
-    function handleTreeitemClick(event) {
+    function handleTreeitemClick(treeitem, event) {
         var targetNode = event.target;
         var isTitleClick = false;
         var isLinkClick = false;
-        if (targetNode.classList.contains("tree-title") || targetNode.closest(".tree-title")) {
-            isTitleClick = true;
+
+        if (targetNode && targetNode.classList) {
+            if (targetNode.classList.contains("tree-title") || targetNode.closest(".tree-title")) {
+                isTitleClick = true;
+            }
+            if (targetNode.tagName.toLowerCase() === "a" || targetNode.closest("a")) {
+                isLinkClick = true;
+            }
         }
-        if (targetNode.tagName.toLowerCase() === "a" || targetNode.closest("a")) {
-            isLinkClick = true;
-        }
+
         if (isTitleClick || isLinkClick) {
-            if (this.isExpandable) {
-                if (isTreeitemExpanded(this)) {
-                    collapseTreeitem(this.tree, this);
+            if (treeitem.isExpandable) {
+                if (isTreeitemExpanded(treeitem)) {
+                    collapseTreeitem(treeitem.tree, treeitem);
                 } else {
-                    expandTreeitem(this.tree, this);
+                    expandTreeitem(treeitem.tree, treeitem);
                 }
             } else {
-                setFocusToItem(this.tree, this);
+                setFocusToItem(treeitem.tree, treeitem);
             }
-            setSelectedToItem(this.tree, this);
+            setSelectedToItem(treeitem.tree, treeitem);
         }
         event.stopPropagation();
     }
