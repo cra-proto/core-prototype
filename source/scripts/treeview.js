@@ -442,16 +442,32 @@
     }
 
     function handleTreeitemClick(treeitem, event) {
-        if (treeitem.isExpandable) {
-            if (isTreeitemExpanded(treeitem)) {
-                collapseTreeitem(treeitem.tree, treeitem);
-            } else {
-                expandTreeitem(treeitem.tree, treeitem);
-            }
-        } else {
-            setFocusToItem(treeitem.tree, treeitem);
+        var targetNode = event.target;
+        var isTitleClick = false;
+        var isLinkClick = false;
+
+        if (targetNode.classList.contains("tree-title") || targetNode.closest(".tree-title")) {
+            isTitleClick = true;
         }
-        setSelectedToItem(treeitem.tree, treeitem);
+        if (targetNode.tagName.toLowerCase() === "a" || targetNode.closest("a")) {
+            isLinkClick = true;
+        }
+
+        // Only route execution events if the user clicked explicitly on the label regions
+        if (isTitleClick || isLinkClick) {
+            if (treeitem.isExpandable) {
+                if (isTreeitemExpanded(treeitem)) {
+                    collapseTreeitem(treeitem.tree, treeitem);
+                } else {
+                    expandTreeitem(treeitem.tree, treeitem);
+                }
+            } else {
+                setFocusToItem(treeitem.tree, treeitem);
+            }
+            setSelectedToItem(treeitem.tree, treeitem);
+        }
+
+        // Always restrict bubbling out to higher layout nodes
         event.stopPropagation();
     }
 
