@@ -426,7 +426,7 @@
                 flag = true;
             }
             if (!flag && char.length === 1 && char.match(/\S/)) {
-                if (char === "*") {
+                if (char === "") {
                     expandAllSiblingItems(treeitem.tree, treeitem);
                     flag = true;
                 } else {
@@ -441,33 +441,28 @@
         }
     }
 
-    function handleTreeitemClick(treeitem, event) {
+    function handleTreeitemClick(event) {
         var targetNode = event.target;
         var isTitleClick = false;
         var isLinkClick = false;
-
         if (targetNode.classList.contains("tree-title") || targetNode.closest(".tree-title")) {
             isTitleClick = true;
         }
         if (targetNode.tagName.toLowerCase() === "a" || targetNode.closest("a")) {
             isLinkClick = true;
         }
-
-        // Only route execution events if the user clicked explicitly on the label regions
         if (isTitleClick || isLinkClick) {
-            if (treeitem.isExpandable) {
-                if (isTreeitemExpanded(treeitem)) {
-                    collapseTreeitem(treeitem.tree, treeitem);
+            if (this.isExpandable) {
+                if (isTreeitemExpanded(this)) {
+                    collapseTreeitem(this.tree, this);
                 } else {
-                    expandTreeitem(treeitem.tree, treeitem);
+                    expandTreeitem(this.tree, this);
                 }
             } else {
-                setFocusToItem(treeitem.tree, treeitem);
+                setFocusToItem(this.tree, this);
             }
-            setSelectedToItem(treeitem.tree, treeitem);
+            setSelectedToItem(this.tree, this);
         }
-
-        // Always restrict bubbling out to higher layout nodes
         event.stopPropagation();
     }
 
