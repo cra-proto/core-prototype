@@ -1,4 +1,4 @@
-.tree {
+:root {
   --spacing: 2.3rem;
   --radius: 10px;
   --listitemcolor: #ccc;
@@ -66,6 +66,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
   display: block;
   position: absolute;
   top: calc(var(--spacing) / 2 - var(--radius));
+  /* Adjust left to change circle spacing and positioning */
   left: calc(var(--spacing) - var(--radius) - 1px);
   width: calc(2 * var(--radius));
   height: calc(2 * var(--radius));
@@ -77,6 +78,10 @@ ul[role="tree"] > li[role="treeitem"]::before {
 .tree li:has(> span.tree-title)::after,
 .tree li.tree-parent::after {
   display: none;
+}
+
+.tree li .wb-inv {
+  display: none !important;
 }
 
 li[role="treeitem"] span.tree-title {
@@ -93,12 +98,19 @@ li[role="treeitem"] span.tree-title {
   z-index: 2;
 }
 
-li[role="treeitem"] a {
+.tree li span.tree-title:hover {
+  background-color: var(--expandcolor);
+  color: #ffffff;
+/*  font-weight: 500; */
+}
+
+li[role="treeitem"] a.page-link {
   display: inline-flex !important;
   align-items: center;
   cursor: pointer;
   line-height: 1.2em;
   white-space: nowrap;
+  /* Adjust left to change link spacing and positioning */
   margin-left: calc(-1 * (var(--spacing) - var(--radius) - 15px));
   padding: 0.35em 0.6em;
   border-radius: 4px;
@@ -107,30 +119,24 @@ li[role="treeitem"] a {
   text-decoration: underline;
 }
 
-li[role="treeitem"] a:visited {
+li[role="treeitem"] a.page-link:visited {
   color: #551a8b;
 }
 
-.tree li span.tree-title:hover {
-  background-color: var(--expandcolor);
-  color: #ffffff;
-/*  font-weight: 500; */
-}
-
-.tree li a:hover {
+.tree li a.page-link:hover {
   background-color: #eaebed;
   color: #0000ee;
 }
 
 [role="treeitem"] span.tree-title:focus,
-[role="treeitem"] li a:focus {
+[role="treeitem"] a.page-link:focus {
   outline: 0;
 }
 
 [role="treeitem"] span.tree-title.focus,
-[role="treeitem"] li a.focus,
+[role="treeitem"] a.page-link.focus,
 [role="treeitem"] span.tree-title:focus-visible,
-[role="treeitem"] li a:focus-visible {
+[role="treeitem"] a.page-link:focus-visible {
   outline: 1px dotted #000;
 }
 
@@ -143,7 +149,7 @@ li[role="treeitem"] > span.tree-title::before {
   left: calc(var(--spacing) - var(--radius) - 21px);
   top: 50%;
   transform: translateY(-50%);
-  background-color: transparent; 
+  background-color: #fff; 
   padding: 2px;
 }
 
