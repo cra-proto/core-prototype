@@ -7,7 +7,8 @@
 
 /* Clear default layout parameters */
 .tree, 
-.tree ul {
+.tree ul,
+.tree [role="group"] {
   list-style: none;
   padding-left: 0;
   margin-left: 0;
@@ -24,7 +25,7 @@ ul[role="tree"] li {
   margin-bottom: 0.3em;
 }
 
-li[role="treeitem"] ul {
+li[role="treeitem"] [role="group"] {
   margin-left: calc(var(--radius) - var(--spacing));
   padding-left: 0;
 }
@@ -60,6 +61,24 @@ ul[role="tree"] > li[role="treeitem"]::before {
   display: none;
 }
 
+.tree li::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(var(--spacing) / 2 - var(--radius));
+  left: calc(var(--spacing) - var(--radius) - 1px);
+  width: calc(2 * var(--radius));
+  height: calc(2 * var(--radius));
+  border-radius: 50%;
+  background: var(--listitemcolor);
+  z-index: 3;
+}
+
+.tree li:has(> span.tree-title)::after,
+.tree li.tree-parent::after {
+  display: none;
+}
+
 li[role="treeitem"] span.tree-title {
   display: inline-flex !important;
   align-items: center;
@@ -92,23 +111,6 @@ li[role="treeitem"] a:visited {
   color: #551a8b;
 }
 
-.tree li::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: calc(var(--spacing) / 2 - var(--radius));
-  left: calc(var(--spacing) - var(--radius) - 1px);
-  width: calc(2 * var(--radius));
-  height: calc(2 * var(--radius));
-  border-radius: 50%;
-  background: var(--listitemcolor);
-  z-index: 3;
-}
-
-.tree li:has(> span.tree-title)::after {
-  display: none;
-}
-
 .tree li span.tree-title:hover {
   background-color: var(--expandcolor);
   color: #ffffff;
@@ -120,16 +122,16 @@ li[role="treeitem"] a:visited {
   color: #0000ee;
 }
 
+[role="treeitem"] span.tree-title:focus,
+[role="treeitem"] li a:focus {
+  outline: 0;
+}
+
 [role="treeitem"] span.tree-title.focus,
 [role="treeitem"] li a.focus,
 [role="treeitem"] span.tree-title:focus-visible,
 [role="treeitem"] li a:focus-visible {
   outline: 1px dotted #000;
-}
-
-[role="treeitem"] span.tree-title:focus,
-[role="treeitem"] li a:focus {
-  outline: 0;
 }
 
 /* --- FontAwesome Folder Icons --- */
@@ -161,11 +163,13 @@ li[role="treeitem"][aria-expanded="true"] > span.tree-title::before {
 }
 
 li[role="treeitem"][aria-expanded="false"] + [role="group"], 
+li[role="treeitem"][aria-expanded="false"] > [role="group"],
 li[role="treeitem"][aria-expanded="false"] > ul {
-  display: none;
+  display: none !important;
 }
 
 li[role="treeitem"][aria-expanded="true"] + [role="group"], 
+li[role="treeitem"][aria-expanded="true"] > [role="group"],
 li[role="treeitem"][aria-expanded="true"] > ul {
-  display: block;
+  display: block !important;
 }
