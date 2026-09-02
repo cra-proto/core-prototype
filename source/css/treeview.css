@@ -142,7 +142,7 @@ li[role="treeitem"] a.page-link:visited {
 
 /* --- FontAwesome Folder Icons --- */
 li[role="treeitem"] > span.tree-title::before {
-  font-family: "Font Awesome 5 Free", sans-serif;
+  font-family: "Wingdings";
   font-weight: 900;
   color: #26374a;
   position: absolute;
@@ -155,12 +155,28 @@ li[role="treeitem"] > span.tree-title::before {
 
 /* Closed Folder State */
 li[role="treeitem"][aria-expanded="false"] > span.tree-title::before {
-  content: "\f07b";
+  content: "\0030";
 }
 
 /* Open Folder State */
 li[role="treeitem"][aria-expanded="true"] > span.tree-title::before {
-  content: "\f07c";
+  content: "\0031";
+}
+
+@supports (font-family: "Font Awesome 5 Free") {
+  li[role="treeitem"] > span.tree-title::before {
+    font-family: "Font Awesome 5 Free";
+  }
+
+  /* Closed Folder State */
+  li[role="treeitem"][aria-expanded="false"] > span.tree-title::before {
+    content: "\f07b";
+  }
+
+  /* Open Folder State */
+  li[role="treeitem"][aria-expanded="true"] > span.tree-title::before {
+    content: "\f07c";
+  }
 }
 
 .tree li span.tree-title:hover::before {
