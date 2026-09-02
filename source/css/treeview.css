@@ -202,12 +202,12 @@ li[role="treeitem"][aria-expanded="true"] > span.tree-title::before {
 
 li[role="treeitem"][aria-expanded="false"] + [role="group"], 
 li[role="treeitem"][aria-expanded="false"] > [role="group"],
-li[role="treeitem"][aria-expanded="false"] > ul {
+li[role="treeitem"][aria-expanded="false"] > ul[role="group"] {
   display: none !important;
 }
 
 li[role="treeitem"][aria-expanded="true"] + [role="group"], 
 li[role="treeitem"][aria-expanded="true"] > [role="group"],
-li[role="treeitem"][aria-expanded="true"] > ul {
+li[role="treeitem"][aria-expanded="true"] > ul[role="group"] {
   display: block !important;
 }
