@@ -1,5 +1,6 @@
-    "use strict";
+"use strict";
 
+(function () {
     function initializeAllTrees() {
         var trees = document.querySelectorAll("[role=\"tree\"]");
         var i = 0;
@@ -47,28 +48,16 @@
         }
     }
 
-    document.addEventListener("wb-ready.wb", function () {
-        initializeAllTrees();
-        initializeTreeButtons();
-        checkQueryStringTriggers();
-    });
-
-    document.addEventListener("wet-boew-ready", function () {
-        initializeAllTrees();
-        initializeTreeButtons();
-        checkQueryStringTriggers();
-    });
-
     function triggerGlobalExpansion(shouldExpand) {
         var trees = document.querySelectorAll("[role=\"tree\"]");
         var i = 0;
         while (i < trees.length) {
             var treeNode = trees[i];
-            var treeItems = treeNode.querySelectorAll("[role=\"treeitem\"]");
+            var treeItems = treeNode.querySelectorAll("li[role=\"treeitem\"]");
             var j = 0;
             while (j < treeItems.length) {
                 var itemNode = treeItems[j];
-                var hasGroup = itemNode.querySelector("[role=\"group\"], ul");
+                var hasGroup = itemNode.querySelector("ul[role=\"group\"]");
                 if (hasGroup) {
                     if (shouldExpand) {
                         itemNode.setAttribute("aria-expanded", "true");
@@ -115,7 +104,7 @@
         var elem = node.firstElementChild;
         var ti = group;
         while (elem) {
-            if (elem.tagName.toLowerCase() === "li") {
+            if (elem.tagName.toLowerCase() === "li" && elem.getAttribute("role") === "treeitem") {
                 ti = createTreeitem(elem, tree, group);
                 initTreeitem(ti);
                 if (tree && tree.treeitems && tree.firstChars) {
@@ -127,6 +116,69 @@
                 findTreeitems(elem, tree, ti);
             }
             elem = elem.nextElementSibling;
+        }
+    }
+
+    function createTreeitem(node, treeObj, group) {
+        if (typeof node !== "object") {
+            return null;
+        }
+        node.tabIndex = -1;
+
+        var label = "";
+        var titleSpan = node.querySelector(".tree-title");
+        var linkChild = node.querySelector("a.page-link");
+
+        if (node.getAttribute("aria-label")) {
+            label = node.getAttribute("aria-label").trim();
+        } else if (titleSpan) {
+            label = titleSpan.textContent.trim();
+        } else if (linkChild) {
+            label = linkChild.textContent.trim();
+        } else {
+            label = node.textContent.trim();
+        }
+
+        var isExpandable = false;
+        var elem = node.firstElementChild;
+        while (elem) {
+            if (elem.tagName.toLowerCase() === "ul" && elem.getAttribute("role") === "group") {
+                isExpandable = true;
+            }
+            elem = elem.nextElementSibling;
+        }
+
+        return {
+            tree: treeObj,
+            groupTreeitem: group,
+            domNode: node,
+            label: label,
+            isExpandable: isExpandable,
+            isVisible: false,
+            inGroup: !!group
+        };
+    }
+
+    function initTreeitem(treeitem) {
+        treeitem.domNode.tabIndex = -1;
+        if (treeitem.isExpandable && !treeitem.domNode.getAttribute("aria-expanded")) {
+            treeitem.domNode.setAttribute("aria-expanded", "false");
+        }
+        treeitem.domNode.addEventListener("keydown", function (event) {
+            handleTreeitemKeydown(treeitem, event);
+        });
+        treeitem.domNode.addEventListener("click", function (event) {
+            handleTreeitemClick(treeitem, event);
+        });
+        treeitem.domNode.addEventListener("focus", function () {
+            handleTreeitemFocus(treeitem);
+        });
+        treeitem.domNode.addEventListener("blur", function () {
+            handleTreeitemBlur(treeitem);
+        });
+        if (!treeitem.isExpandable) {
+            treeitem.domNode.addEventListener("mouseover", handleTreeitemMouseOver);
+            treeitem.domNode.addEventListener("mouseout", handleTreeitemMouseOut);
         }
     }
 
@@ -227,11 +279,12 @@
     }
 
     function collapseChildrenNodes(parentItem) {
-        var childItems = parentItem.domNode.querySelectorAll("[role=\"treeitem\"]");
+        // Enforce strict containment mapping patterns
+        var childItems = parentItem.domNode.querySelectorAll("li[role=\"treeitem\"]");
         var i = 0;
         while (i < childItems.length) {
             var item = childItems[i];
-            var hasGroup = item.querySelector("[role=\"group\"], ul");
+            var hasGroup = item.querySelector("ul[role=\"group\"]");
             if (hasGroup) {
                 item.setAttribute("aria-expanded", "false");
             }
@@ -252,6 +305,10 @@
             updateVisibleTreeitems(tree);
             setFocusToItem(tree, groupTreeitem);
         }
+    }
+
+    function isTreeitemExpanded(treeitem) {
+        return !!(treeitem.isExpandable && treeitem.domNode.getAttribute("aria-expanded") === "true");
     }
 
     function updateVisibleTreeitems(tree) {
@@ -302,167 +359,70 @@
         return -1;
     }
 
-    function createTreeitem(node, treeObj, group) {
-        if (typeof node !== "object") {
-            return null;
-        }
-        node.tabIndex = -1;
-
-        var label = "";
-        var titleSpan = node.querySelector(".tree-title");
-        var linkChild = node.querySelector("a");
-
-        if (node.getAttribute("aria-label")) {
-            label = node.getAttribute("aria-label").trim();
-        } else {
-            if (titleSpan) {
-                label = titleSpan.textContent.trim();
-            } else {
-                if (linkChild) {
-                    label = linkChild.textContent.trim();
-                } else {
-                    label = node.textContent.trim();
-                }
-            }
-        }
-
-        var isExpandable = false;
-        var elem = node.firstElementChild;
-        while (elem) {
-            if (elem.tagName.toLowerCase() === "ul") {
-                elem.setAttribute("role", "group");
-                isExpandable = true;
-            }
-            elem = elem.nextElementSibling;
-        }
-
-        var inGroup = false;
-        if (group) {
-            inGroup = true;
-        }
-        return {
-            tree: treeObj,
-            groupTreeitem: group,
-            domNode: node,
-            label: label,
-            isExpandable: isExpandable,
-            isVisible: false,
-            inGroup: inGroup,
-            keyCode: {
-                RETURN: 13,
-                SPACE: 32,
-                PAGEUP: 33,
-                PAGEDOWN: 34,
-                END: 35,
-                HOME: 36,
-                LEFT: 37,
-                UP: 38,
-                RIGHT: 39,
-                DOWN: 40
-            }
-        };
-    }
-
-    function initTreeitem(treeitem) {
-        treeitem.domNode.tabIndex = -1;
-        if (!treeitem.domNode.getAttribute("role")) {
-            treeitem.domNode.setAttribute("role", "treeitem");
-        }
-        if (treeitem.isExpandable && !treeitem.domNode.getAttribute("aria-expanded")) {
-            treeitem.domNode.setAttribute("aria-expanded", "false");
-        }
-        treeitem.domNode.addEventListener("keydown", function (event) {
-            handleTreeitemKeydown(treeitem, event);
-        });
-        treeitem.domNode.addEventListener("click", function (event) {
-            handleTreeitemClick(treeitem, event);
-        });
-        treeitem.domNode.addEventListener("focus", function () {
-            handleTreeitemFocus(treeitem);
-        });
-        treeitem.domNode.addEventListener("blur", function () {
-            handleTreeitemBlur(treeitem);
-        });
-        if (!treeitem.isExpandable) {
-            treeitem.domNode.addEventListener("mouseover", handleTreeitemMouseOver);
-            treeitem.domNode.addEventListener("mouseout", handleTreeitemMouseOut);
-        }
-    }
-
-    function isTreeitemExpanded(treeitem) {
-        if (treeitem.isExpandable && treeitem.domNode.getAttribute("aria-expanded") === "true") {
-            return true;
-        }
-        return false;
-    }
-
     function handleTreeitemKeydown(treeitem, event) {
         var flag = false;
-        var char = event.key;
+        var key = event.key;
         if (event.altKey || event.ctrlKey || event.metaKey) {
             return;
         }
-        if (event.shiftKey && char.length === 1 && char.match(/\S/)) {
-            if (char === "") {
-                expandAllSiblingItems(treeitem.tree, treeitem);
-                flag = true;
-            } else {
-                setFocusByFirstCharacter(treeitem.tree, treeitem, char);
-                flag = true;
-            }
+        if (event.shiftKey && key.length === 1 && key.match(/\S/)) {
+            setFocusByFirstCharacter(treeitem.tree, treeitem, key);
+            flag = true;
         } else {
-            if (event.keyCode === treeitem.keyCode.RETURN || event.keyCode === treeitem.keyCode.SPACE) {
-                if (!treeitem.isExpandable) {
-                    setFocusToItem(treeitem.tree, treeitem);
-                }
-                setSelectedToItem(treeitem.tree, treeitem);
-                flag = true;
-            }
-            if (event.keyCode === treeitem.keyCode.UP) {
-                setFocusToPreviousItem(treeitem.tree, treeitem);
-                flag = true;
-            }
-            if (event.keyCode === treeitem.keyCode.DOWN) {
-                setFocusToNextItem(treeitem.tree, treeitem);
-                flag = true;
-            }
-            if (event.keyCode === treeitem.keyCode.RIGHT) {
-                if (treeitem.isExpandable) {
-                    if (isTreeitemExpanded(treeitem)) {
-                        setFocusToNextItem(treeitem.tree, treeitem);
-                    } else {
-                        expandTreeitem(treeitem.tree, treeitem);
+            switch (key) {
+                case "Enter":
+                case " ":
+                    if (!treeitem.isExpandable) {
+                        setFocusToItem(treeitem.tree, treeitem);
                     }
-                }
-                flag = true;
-            }
-            if (event.keyCode === treeitem.keyCode.LEFT) {
-                if (treeitem.isExpandable && isTreeitemExpanded(treeitem)) {
-                    collapseTreeitem(treeitem.tree, treeitem);
+                    setSelectedToItem(treeitem.tree, treeitem);
                     flag = true;
-                } else {
-                    if (treeitem.inGroup) {
+                    break;
+                case "ArrowUp":
+                    setFocusToPreviousItem(treeitem.tree, treeitem);
+                    flag = true;
+                    break;
+                case "ArrowDown":
+                    setFocusToNextItem(treeitem.tree, treeitem);
+                    flag = true;
+                    break;
+                case "ArrowRight":
+                    if (treeitem.isExpandable) {
+                        if (isTreeitemExpanded(treeitem)) {
+                            setFocusToNextItem(treeitem.tree, treeitem);
+                        } else {
+                            expandTreeitem(treeitem.tree, treeitem);
+                        }
+                    }
+                    flag = true;
+                    break;
+                case "ArrowLeft":
+                    if (treeitem.isExpandable && isTreeitemExpanded(treeitem)) {
+                        collapseTreeitem(treeitem.tree, treeitem);
+                        flag = true;
+                    } else if (treeitem.inGroup) {
                         setFocusToParentItem(treeitem.tree, treeitem);
                         flag = true;
                     }
-                }
-            }
-            if (event.keyCode === treeitem.keyCode.HOME) {
-                setFocusToFirstItem(treeitem.tree);
-                flag = true;
-            }
-            if (event.keyCode === treeitem.keyCode.END) {
-                setFocusToLastItem(treeitem.tree);
-                flag = true;
-            }
-            if (!flag && char.length === 1 && char.match(/\S/)) {
-                if (char === "") {
+                    break;
+                case "Home":
+                    setFocusToFirstItem(treeitem.tree);
+                    flag = true;
+                    break;
+                case "End":
+                    setFocusToLastItem(treeitem.tree);
+                    flag = true;
+                    break;
+                case "*":
                     expandAllSiblingItems(treeitem.tree, treeitem);
                     flag = true;
-                } else {
-                    setFocusByFirstCharacter(treeitem.tree, treeitem, char);
-                    flag = true;
-                }
+                    break;
+                default:
+                    if (key.length === 1 && key.match(/\S/)) {
+                        setFocusByFirstCharacter(treeitem.tree, treeitem, key);
+                        flag = true;
+                    }
+                    break;
             }
         }
         if (flag) {
@@ -475,16 +435,14 @@
         var targetNode = event.target;
         var isTitleClick = false;
         var isLinkClick = false;
-
         if (targetNode && targetNode.classList) {
             if (targetNode.classList.contains("tree-title") || targetNode.closest(".tree-title")) {
                 isTitleClick = true;
             }
-            if (targetNode.tagName.toLowerCase() === "a" || targetNode.closest("a")) {
+            if (targetNode.classList.contains("page-link") || targetNode.closest("a.page-link")) {
                 isLinkClick = true;
             }
         }
-
         if (isTitleClick || isLinkClick) {
             if (treeitem.isExpandable) {
                 if (isTreeitemExpanded(treeitem)) {
@@ -533,3 +491,17 @@
     function handleTreeitemMouseOut(event) {
         event.currentTarget.classList.remove("hover");
     }
+
+    // Framework Ready Bindings
+    document.addEventListener("wb-ready.wb", function () {
+        initializeAllTrees();
+        initializeTreeButtons();
+        checkQueryStringTriggers();
+    });
+
+    document.addEventListener("wet-boew-ready", function () {
+        initializeAllTrees();
+        initializeTreeButtons();
+        checkQueryStringTriggers();
+    });
+})();
