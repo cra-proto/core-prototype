@@ -175,7 +175,7 @@ li[role="treeitem"][aria-expanded="true"] > span.tree-title::before {
 
   /* Open Folder State */
   li[role="treeitem"][aria-expanded="true"] > span.tree-title::before {
-    content: "\0030";
+    content: "\0031";
   }
 }
 
