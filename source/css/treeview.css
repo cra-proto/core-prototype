@@ -142,7 +142,7 @@ li[role="treeitem"] a.page-link:visited {
 
 /* --- FontAwesome Folder Icons --- */
 li[role="treeitem"] > span.tree-title::before {
-  font-family: "Segoe UI Emoji";
+  font-family: "Segoe UI Emoji", sans-serif;
   font-weight: 900;
   color: #26374a;
   position: absolute;
@@ -166,6 +166,7 @@ li[role="treeitem"][aria-expanded="true"] > span.tree-title::before {
 @supports (font-family: "Wingdings") {
   li[role="treeitem"] > span.tree-title::before {
     font-family: "Wingdings";
+    font-weight: 900;
   }
 
   /* Closed Folder State */
@@ -182,6 +183,7 @@ li[role="treeitem"][aria-expanded="true"] > span.tree-title::before {
 @supports (font-family: "Font Awesome 5 Free") {
   li[role="treeitem"] > span.tree-title::before {
     font-family: "Font Awesome 5 Free";
+    font-weight: 900;
   }
 
   /* Closed Folder State */
