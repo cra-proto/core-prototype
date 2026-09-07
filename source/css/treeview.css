@@ -61,7 +61,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
   display: none;
 }
 
-.tree li::after {
+.tree li[role="treeitem"]::after {
   content: "";
   display: block;
   position: absolute;
@@ -98,7 +98,7 @@ li[role="treeitem"] span.tree-title {
   z-index: 2;
 }
 
-.tree li span.tree-title:hover {
+.tree li[role="treeitem"] span.tree-title:hover {
   background-color: var(--expandcolor);
   color: #ffffff;
 /*  font-weight: 500; */
@@ -123,7 +123,7 @@ li[role="treeitem"] a.page-link:visited {
   color: #551a8b;
 }
 
-.tree li a.page-link:hover {
+.tree li[role="treeitem"] a.page-link:hover {
   background-color: #eaebed;
   color: #0000ee;
 }
