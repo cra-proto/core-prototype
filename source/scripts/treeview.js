@@ -126,8 +126,8 @@
         node.tabIndex = -1;
 
         var label = "";
-        var titleSpan = node.querySelector(".tree-title");
-        var linkChild = node.querySelector("a.page-link");
+        var titleSpan = node.querySelector(".tv-title");
+        var linkChild = node.querySelector("a.tv-page-link");
 
         if (node.getAttribute("aria-label")) {
             label = node.getAttribute("aria-label").trim();
@@ -436,10 +436,10 @@
         var isTitleClick = false;
         var isLinkClick = false;
         if (targetNode && targetNode.classList) {
-            if (targetNode.classList.contains("tree-title") || targetNode.closest(".tree-title")) {
+            if (targetNode.classList.contains("tv-title") || targetNode.closest(".tv-title")) {
                 isTitleClick = true;
             }
-            if (targetNode.classList.contains("page-link") || targetNode.closest("a.page-link")) {
+            if (targetNode.classList.contains("tv-page-link") || targetNode.closest("a.tv-page-link")) {
                 isLinkClick = true;
             }
         }
@@ -461,7 +461,7 @@
     function handleTreeitemFocus(treeitem) {
         var node = treeitem.domNode;
         if (treeitem.isExpandable) {
-            var titleSpan = node.querySelector(".tree-title");
+            var titleSpan = node.querySelector(".tv-title");
             if (titleSpan) {
                 node = titleSpan;
             } else {
@@ -474,7 +474,7 @@
     function handleTreeitemBlur(treeitem) {
         var node = treeitem.domNode;
         if (treeitem.isExpandable) {
-            var titleSpan = node.querySelector(".tree-title");
+            var titleSpan = node.querySelector(".tv-title");
             if (titleSpan) {
                 node = titleSpan;
             } else {
