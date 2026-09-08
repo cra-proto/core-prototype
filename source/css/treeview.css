@@ -71,13 +71,24 @@ ul[role="tree"] > li[role="treeitem"]::before {
   width: calc(2 * var(--radius));
   height: calc(2 * var(--radius));
   border-radius: 50%;
-  background: var(--listitemcolor);
   z-index: 3;
+  background: var(--listitemcolor);
+/*  border: 2px solid var(--listitemcolor);
+  box-sizing: border-box;
+  background: radial-gradient(
+    circle, 
+    lightgreen 35%, 
+    var(--listitemcolor) 36%, 
+    var(--listitemcolor) 50%, 
+    #fff 51%
+  );
+*/
 }
 
 .wb-treeview li.tv-li-static[role="treeitem"]::after {
   background: #fff;
   border: 2px var(--listitemcolor) solid;
+/*  border: 5px var(--listitemcolor) double; */
 }
 
 .wb-treeview li:has(> span.tv-title)::after,
