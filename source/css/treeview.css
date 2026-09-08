@@ -75,6 +75,11 @@ ul[role="tree"] > li[role="treeitem"]::before {
   z-index: 3;
 }
 
+.wb-treeview li.tv-li-static[role="treeitem"]::after {
+  background: #fff;
+  border: 2px var(--listitemcolor) solid;
+}
+
 .wb-treeview li:has(> span.tv-title)::after,
 .wb-treeview li.tv-parent::after {
   display: none;
