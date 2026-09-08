@@ -22,19 +22,25 @@
 
         if (expandBtn && !expandBtn.getAttribute("data-btn-initialized")) {
             expandBtn.setAttribute("data-btn-initialized", "true");
-            expandBtn.addEventListener("click", function () {
-                triggerGlobalExpansion(true);
-            });
+            expandBtn.removeEventListener("click", globalExpandHandler);
+            expandBtn.addEventListener("click", globalExpandHandler);
         }
 
         if (collapseBtn && !collapseBtn.getAttribute("data-btn-initialized")) {
             collapseBtn.setAttribute("data-btn-initialized", "true");
-            collapseBtn.addEventListener("click", function () {
-                triggerGlobalExpansion(false);
-            });
+            collapseBtn.removeEventListener("click", globalCollapseHandler);
+            collapseBtn.addEventListener("click", globalCollapseHandler);
         }
     }
 
+    function globalExpandHandler() {
+        triggerGlobalExpansion(true);
+    }
+
+    function globalCollapseHandler() {
+        triggerGlobalExpansion(false);
+    }
+    
     function checkQueryStringTriggers() {
         var urlParams = new URLSearchParams(window.location.search);
         var treeParam = urlParams.get("tree");
