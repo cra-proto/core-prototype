@@ -34,6 +34,8 @@ modifiedLinkList: "/core-prototype/source/data/exclude-redirect-links.json"
 relativeExternalLinks: false
 robots: "noindex, nofollow"
 testBanner: true
+sitemap:
+  en: "/core-prototype/index.html"
 
 # Page front matter defaults
 defaults:
