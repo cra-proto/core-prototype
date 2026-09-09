@@ -24,7 +24,7 @@ For the GCWeb/Jekyll setup to function a `_config.yml` file must saved at the re
 ## Page template options
 
 - The `Edit button` on the banner toggles an instance **TinyMCE** on and off allowing editing of the live page **Note:** Any changes you save with this method are only saved for yourself so if you want to make any permanent changes you'll still need to update those via GitHub
-- The `GitHub button` on the banner will take you to the the source page on GitHub
+- The `GitHub button` on the banner will take you to the source page on GitHub
 - All pages links and forms that direct outside of the repository to will automatically be replaced with links to the **exit intent page**
 
 ## Custom GitHub options
@@ -148,11 +148,12 @@ infoBanner:                                        # Sets a Banner at the top of
 ---
 ```
 
-## Custom YAML Front Matter page setting options
+## Custom YAML Front Matter page setting options (Optional)
 
 ```yaml
 ---
-testBanner: [true | false]                         # Toggles if the testing site only banner shows for a page (deafult: true)
+testBanner: [true | false]                         # Toggles if the testing site only banner shows for a page (default: true)
+sitemapExclude: [true | false]                     # Toggles whether page will be included in the generated sitemap (default: false)
 notedlinks:                                        # Configures and adds links of your choice to the testing site only banner for a page
   - title: "The link title"
     link: "The link URL"
@@ -167,7 +168,7 @@ robots: "noindex, nofollow"                        # Default value to use on the
 ---
 layout: ["default"]                                # Available layout types: core, default, fluid, no-container, without-h1, application, home, servermesssage, splashpage-en, splashpage-fr
 lang: ["en" | "fr"]                                # Sets the page language for the entire site
-creator:                                           # Sets the creator metada attribute for all pages on the site
+creator:                                           # Sets the creator metadata attribute for all pages on the site
   en: "Canada Revenue Agency"
   fr: "Agence du revenu du Canada"
 website: "Website URL"                             # Root website used for the site
@@ -212,7 +213,7 @@ applicationURL: "https://www.canada.ca/en/revenue-agency.html"   # Sets the URL 
 ```yaml
 ---
 developerOptions: [true | false]                   # Turns the developer options on/off for all pages (Edit button, GitHub button, custom banner links, exit page leave site button)
-devOptionsLocStore: "gitCRATemplateDevOptions"     # Sets the localStorage key name that is used to store the boolean value trigger if the developer options are on/off
+devOptionsLocStore: "gitCRATemplateDevOptions"     # Sets the localStorage key name that is used to store the Boolean value trigger if the developer options are on/off
 testBanner: [true | false]                         # Toggles the site wide banner off and on for the site
 
 exitByURL: [true | false]                          # Toggles if the exit page uses the developed method (false) or if it uses the WET Exit plugin (true). Note that the WET Exit plugin may be increase the processing time for the script to execute on the page.   Default is true
@@ -232,20 +233,20 @@ robots: "noindex, nofollow"                        # Default value to use site w
 1. [Video instructions for all of step 1-2](https://www.youtube.com/watch?v=LfP7Y9Ja6Qc) Download and install Ruby. You can find a version to download through the [Download Ruby](https://www.ruby-lang.org/en/downloads/) page
    1. Install Ruby with all the defaults checked and make sure `Run 'ridk install' to install MSYS2 and development toolchain.` is checked.  This will open a command prompt install dialog
    2. Follow the prompts and install **all three** options that are shown
-      1. First install `1 - MSYS2 base installalation`
+      1. First install `1 - MSYS2 base installation`
       2. then install `2 - MSYS2 system update (optional)`
       3. and finally install `3 - MSYS2 and MINGW development toolchain`
-   3. Open the `Command prompt/Terminal/Powershell` and enter `ruby -v` to verify that **ruby** is installed
-   4. At the `Command prompt/Terminal/Powershell` and enter `gem -v` to verify that **gem** is installed
-2. At the `Command prompt/Terminal/Powershell` and enter `gem install jekyll bundler` after it has completed enter `jekyll -v` to verify that **Jekyll** is installed
-3. At the `Command prompt/Terminal/Powershell` and enter `gem install GitHub-pages` to install GitHub page support
-4. Update any older elements that you may have been notified of in the `Command prompt/Terminal/Powershell` when you did the various `gem install` commands (e.g. `gem update --system 3.6.7`)
-5. At the the `Command prompt/Terminal/Powershell` enter `bundle exec jekyll serve --live reload`. This should run Jekyll, generate your site, and start the local site server
+   3. Open the `Command prompt/Terminal/PowerShell` and enter `ruby -v` to verify that **ruby** is installed
+   4. At the `Command prompt/Terminal/PowerShell` and enter `gem -v` to verify that **gem** is installed
+2. At the `Command prompt/Terminal/PowerShell` and enter `gem install jekyll bundler` after it has completed enter `jekyll -v` to verify that **Jekyll** is installed
+3. At the `Command prompt/Terminal/PowerShell` and enter `gem install GitHub-pages` to install GitHub page support
+4. Update any older elements that you may have been notified of in the `Command prompt/Terminal/PowerShell` when you did the various `gem install` commands (e.g. `gem update --system 3.6.7`)
+5. At the `Command prompt/Terminal/PowerShell` enter `bundle exec jekyll serve --live reload`. This should run Jekyll, generate your site, and start the local site server
    1. **Note**: a `gemfile` is required in the local GitHub repository to run the jekyll server.  This gemfile should contain the following line: `gem "github-pages", group: :jekyll_plugins`
 6. In your browser go to `https://localhost:4000/github-workspace-name/` and you should see your a fully generated version of your site
 
 [//]: # (**************************Test comment*********************************)
-[//]: # (At the `Command prompt/Terminal/Powershell` and enter `gem install bundler`)
+[//]: # (At the `Command prompt/Terminal/PowerShell` and enter `gem install bundler`)
 [//]: # (https://www.youtube.com/watch?v=fV01b0duZwU&t=242s)
 
 ## Resources
