@@ -86,9 +86,24 @@ ul[role="tree"] > li[role="treeitem"]::before {
 }
 
 .wb-treeview li.tv-li-static[role="treeitem"]::after {
-  background: #fff;
-  border: 2px var(--listitemcolor) solid;
+  background: #eee;
+  border: 2px #acacac solid;
 /*  border: 5px var(--listitemcolor) double; */
+}
+
+.wb-treeview li.tv-li-add[role="treeitem"]::after {
+  background: #d8eeca;
+  border: 2px #278400 solid;
+}
+
+.wb-treeview li.tv-li-mod[role="treeitem"]::after {
+  background: #f9f4d4;
+  border: 2px #f90 solid;
+}
+
+.wb-treeview li.tv-li-del[role="treeitem"]::after {
+  background: #f3e9e8;
+  border: 2px #d3080c solid;
 }
 
 .wb-treeview li:has(> span.tv-title)::after,
