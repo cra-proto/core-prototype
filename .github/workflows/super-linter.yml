@@ -1,4 +1,5 @@
 ---
+
 name: Super-Linter
 
 on: # yamllint disable-line rule:truthy
@@ -42,5 +43,3 @@ jobs:
           FIX_YAML_PRETTIER: false
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: (_includes\/.+?\.html|resources\/tools\/tinymce\/.+?)
-
-
