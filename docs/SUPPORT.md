@@ -215,6 +215,9 @@ applicationURL: "https://www.canada.ca/en/revenue-agency.html"   # Sets the URL 
 developerOptions: [true | false]                   # Turns the developer options on/off for all pages (Edit button, GitHub button, custom banner links, exit page leave site button)
 devOptionsLocStore: "gitCRATemplateDevOptions"     # Sets the localStorage key name that is used to store the Boolean value trigger if the developer options are on/off
 testBanner: [true | false]                         # Toggles the site wide banner off and on for the site
+sitemap:                                           # Identifies the links to the sitemap pages used for the repository
+  en: "English sitemap page URL"
+  fr: "French sitemap page URL"
 
 exitByURL: [true | false]                          # Toggles if the exit page uses the developed method (false) or if it uses the WET Exit plugin (true). Note that the WET Exit plugin may be increase the processing time for the script to execute on the page.   Default is true
 exitPage:                                          # Identifies the links to the exit intent page used for link generation on all pages
