@@ -1,7 +1,7 @@
+# Support information
 <!--
 layout: without-h1
 -->
-# Support information
 
 > [!NOTE]
 > Make sure to indent with spaces as used below or as shown in the templates as improper spacing and layout of values and variables can cause issues in the format and look of how a page is generated.
