@@ -36,12 +36,12 @@ li[role="treeitem"] {
   cursor: default;
 }
 
-ul[role="tree"] > li[role="treeitem"] {
-  border-left-color: transparent;
-}
-
 li[role="treeitem"]:last-child {
   border-color: transparent;
+}
+
+ul[role="tree"] > li[role="treeitem"] {
+  border-left-color: transparent;
 }
 
 /* Tree Connecting Lines (L-shape) */
@@ -66,6 +66,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
   display: block;
   position: absolute;
   top: calc(var(--spacing) / 2 - var(--radius));
+  
   /* Adjust left to change circle spacing and positioning */
   left: calc(var(--spacing) - var(--radius) - 1px);
   width: calc(2 * var(--radius));
@@ -73,6 +74,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
   border-radius: 50%;
   z-index: 3;
   background: var(--listitemcolor);
+
 /*  border: 2px solid var(--listitemcolor);
   box-sizing: border-box;
   background: radial-gradient(
@@ -88,6 +90,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
 .wb-treeview li.tv-li-static[role="treeitem"]::after {
   background: #fff;
   border: 2px #acacac solid;
+
 /*  border: 5px var(--listitemcolor) double; */
 }
 
@@ -134,9 +137,22 @@ li[role="treeitem"] span.tv-title {
   z-index: 2;
 }
 
+[role="treeitem"] span.tv-title:focus,
+[role="treeitem"] a.tv-page-link:focus {
+  outline: 0;
+}
+
+[role="treeitem"] span.tv-title.focus,
+[role="treeitem"] a.tv-page-link.focus,
+[role="treeitem"] span.tv-title:focus-visible,
+[role="treeitem"] a.tv-page-link:focus-visible {
+  outline: 1px dotted #000;
+}
+
 .wb-treeview li[role="treeitem"] span.tv-title:hover {
   background-color: var(--expandcolor);
-  color: #ffffff;
+  color: #fff;
+
 /*  font-weight: 500; */
 }
 
@@ -146,6 +162,7 @@ li[role="treeitem"] a.tv-page-link {
   cursor: pointer;
   line-height: 1.2em;
   white-space: nowrap;
+
   /* Adjust left to change link spacing and positioning */
   margin-left: calc(-1 * (var(--spacing) - var(--radius) - 15px));
   padding: 0.35em 0.6em;
@@ -161,19 +178,7 @@ li[role="treeitem"] a.tv-page-link:visited {
 
 .wb-treeview li[role="treeitem"] a.tv-page-link:hover {
   background-color: #eaebed;
-  color: #0000ee;
-}
-
-[role="treeitem"] span.tv-title:focus,
-[role="treeitem"] a.tv-page-link:focus {
-  outline: 0;
-}
-
-[role="treeitem"] span.tv-title.focus,
-[role="treeitem"] a.tv-page-link.focus,
-[role="treeitem"] span.tv-title:focus-visible,
-[role="treeitem"] a.tv-page-link:focus-visible {
-  outline: 1px dotted #000;
+  color: #00e;
 }
 
 /* --- FontAwesome Folder Icons --- */
@@ -199,9 +204,9 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   content: "\1f4c2";
 }
 
-@supports (font-family: "Wingdings") {
+@supports (font-family: Wingdings) {
   li[role="treeitem"] > span.tv-title::before {
-    font-family: "Wingdings";
+    font-family: Wingdings;
     font-weight: 900;
   }
 
@@ -235,7 +240,7 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
 
 .wb-treeview li span.tv-title:hover::before {
   background-color: transparent;
-  color: #ffffff;
+  color: #fff;
 }
 
 li[role="treeitem"][aria-expanded="false"] + [role="group"], 
