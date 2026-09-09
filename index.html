@@ -87,13 +87,12 @@ script:
     {%- endif -%}
   {%- endfor -%}
   {%- if p == nil -%}{%- continue -%}{%- endif -%}
-  {%- assign last_char = active_path | slice: -1 -%}
-  {%- assign is_trailing_slash = false -%}
+  {%- assign current_loop_path = active_path -%}
+  {%- assign last_char = current_loop_path | slice: -1 -%}
   {%- if last_char == "/" -%}
-    {%- assign is_trailing_slash = true -%}
-    {%- assign active_path = active_path | append: "index.html" -%}
+    {%- assign current_loop_path = current_loop_path | append: "index.html" -%}
   {%- endif -%}
-  {%- assign url_parts = active_path | split: "/" -%}
+  {%- assign url_parts = current_loop_path | split: "/" -%}
   {%- assign parts_size = url_parts.size -%}
   {%- assign filename = url_parts | last -%}
   {%- assign target_folder_depth = parts_size | minus: 2 -%}
