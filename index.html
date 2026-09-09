@@ -71,10 +71,6 @@ script:
 {%- assign physical_html_depth = 0 -%}
 
 {%- for active_path in sorted_paths -%}
-  {%- assign last_char = active_path | slice: -1 -%}
-  {%- if last_char == "/" -%}
-    {%- assign active_path = active_path | append: "index.html" -%}
-  {%- endif -%}
   {%- assign p = nil -%}
   {%- for item in all_pages -%}
     {%- if item.url == active_path or item.path == active_path -%}
@@ -91,6 +87,10 @@ script:
     {%- endif -%}
   {%- endfor -%}
   {%- if p == nil -%}{%- continue -%}{%- endif -%}
+  {%- assign last_char = active_path | slice: -1 -%}
+  {%- if last_char == "/" -%}
+    {%- assign active_path = active_path | append: "index.html" -%}
+  {%- endif -%}
   {%- assign url_parts = active_path | split: "/" -%}
   {%- assign parts_size = url_parts.size -%}
   {%- assign filename = url_parts | last -%}
