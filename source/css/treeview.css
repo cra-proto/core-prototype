@@ -108,7 +108,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
 
 .wb-treeview li.tv-li-info[role="treeitem"]::after {
   background: #d7faff;
-  border: 2px #278400 solid;
+  border: 2px #269abc solid;
 }
 
 .wb-treeview li:has(> span.tv-title)::after,
