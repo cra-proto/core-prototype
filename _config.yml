@@ -19,55 +19,55 @@ exclude:
 # Site settings
 assets: https://wet-boew.github.io/themes-dist
 creator:
-  en: "Canada Revenue Agency"
-  fr: "Agence du revenu du Canada"
+ en: "Canada Revenue Agency"
+ fr: "Agence du revenu du Canada"
 
 # Custom settings
 developerOptions: false
 devOptionsLocStore: "gitCRATemplateDevOptions"
 exitByURL: false
 exitPage:
-  en: "/core-prototype/source/exit-intent-e.html"
-  fr: "/core-prototype/source/exit-intent-f.html"
+ en: "/core-prototype/source/exit-intent-e.html"
+ fr: "/core-prototype/source/exit-intent-f.html"
 externalOrigin: "https://www.canada.ca"
 modifiedLinkList: "/core-prototype/source/data/exclude-redirect-links.json"
 relativeExternalLinks: false
 robots: "noindex, nofollow"
 testBanner: true
 sitemap:
-  en: "/core-prototype/index.html"
+ en: "/core-prototype/index.html"
 
 # Page front matter defaults
 defaults:
-  - scope:
-      path: "" # Ensure it's applied to all pages
-      type: pages
-    values:
-      layout: default
-      lang: en
-      share: true
-      sitemenu: true
-      sitesearch: true
-      feedback: true
-      feedbackData:
-        theme: "Taxes"
-      feedbackPath: https://www.canada.ca/etc/designs/canada/wet-boew/assets/feedback/page-feedback-en.html
-      privacyUrl: https://www.canada.ca/en/revenue-agency/corporate/privacy-notice.html
-      termsURL: https://www.canada.ca/en/transparency/terms.html
-      sitemenuPath: https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html
-      contextualFooter:
-        title: "Canada Revenue Agency (CRA)"
-        links:
-          - text: "Contact the CRA"
-            url: "https://www.canada.ca/en/revenue-agency/corporate/contact-information.html"
-          - text: "Update your information"
-            url: "https://www.canada.ca/en/revenue-agency/services/update-information-cra.html"
-          - text: "About the CRA"
-            url: "https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra.html"
-      css:
-        - https://use.fontawesome.com/releases/v5.15.4/css/all.css
-        - https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2025-12-mille-iles.css
-        - /core-prototype/source/css/testing-banner.css
-      script:
-        - https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2025-12-mille-iles.js
-        - /core-prototype/source/scripts/external-link-detour.js
+ - scope:
+     path: "" # Ensure it's applied to all pages
+     type: pages
+   values:
+     layout: default
+     lang: en
+     share: true
+     sitemenu: true
+     sitesearch: true
+     feedback: true
+     feedbackData:
+       theme: "Taxes"
+     feedbackPath: https://www.canada.ca/etc/designs/canada/wet-boew/assets/feedback/page-feedback-en.html
+     privacyUrl: https://www.canada.ca/en/revenue-agency/corporate/privacy-notice.html
+     termsURL: https://www.canada.ca/en/transparency/terms.html
+     sitemenuPath: https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html
+     contextualFooter:
+       title: "Canada Revenue Agency (CRA)"
+       links:
+         - text: "Contact the CRA"
+           url: "https://www.canada.ca/en/revenue-agency/corporate/contact-information.html"
+         - text: "Update your information"
+           url: "https://www.canada.ca/en/revenue-agency/services/update-information-cra.html"
+         - text: "About the CRA"
+           url: "https://www.canada.ca/en/revenue-agency/corporate/about-canada-revenue-agency-cra.html"
+     css:
+       - https://use.fontawesome.com/releases/v5.15.4/css/all.css
+       - https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2025-12-mille-iles.css
+       - /core-prototype/source/css/testing-banner.css
+     script:
+       - https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/m%C3%A9li-m%C3%A9lo/2025-12-mille-iles.js
+       - /core-prototype/source/scripts/external-link-detour.js
