@@ -10,11 +10,11 @@
 - [Custom GitHub options](#custom-github-options)
 - [GCWeb Jekyll template YAML Front Matter page settings](#gcweb-jekyll-template-yaml-front-matter-page-settings)
 - [Additional GCWeb Jekyll template YAML Front Matter page settings](#additional-gcweb-jekyll-template-yaml-front-matter-page-settings)
-- [Site _config.yml file options](#site-_config.yml-file-options)
-- [Custom YAML site _config.yml file options](#custom-yaml-site-_config.yml-file-options)
-- [Additional Site _config.yml file options](#additional-site-_config.yml-file-options)
-- [Custom YAML Front Matter page setting options](#custom-yaml-front-matter-page-setting-options)
-- [Installation instructions for running GCWeb Jekyll on a local PC](#installation-instructions-for-running-gcweb-jekyll-on-a-local-pc)
+- [Custom YAML Front Matter page setting options](#custom-yaml-front-matter-page-setting-options-optional)
+- [Site _config.yml file options](#site-_configyml-file-options)
+- [Custom YAML site _config.yml file options](#custom-yaml-site-_configyml-file-options)
+- [Additional Site _config.yml file options](#additional-site-_configyml-file-options)
+- [Installation instructions for running GCWeb Jekyll on a local (personal) PC](#installation-instructions-for-running-gcweb-jekyll-on-a-local-personal-pc)
 - [Resources](#resources)
 
 ## Basic GCWeb setup instructions
@@ -149,7 +149,7 @@ infoBanner:                                        # Sets a Banner at the top of
 ---
 ```
 
-## Custom YAML Front Matter page setting options (Optional) {: #custom-yaml-front-matter-page-setting-options }
+## Custom YAML Front Matter page setting options (Optional)
 
 ```yaml
 ---
@@ -163,7 +163,7 @@ robots: "noindex, nofollow"                        # Default value to use on the
 ---
 ```
 
-## Site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options {: #site-_config.yml-file-options }
+## Site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options
 
 ```yaml
 ---
@@ -185,7 +185,7 @@ termsURL: "https://www.canada.ca/en/transparency/terms.html"   # Sets the URL fo
 ---
 ```
 
-## Additional site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options {: #additional-site-_config.yml-file-options }
+## Additional site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options
 
 ```yaml
 ---
@@ -209,7 +209,7 @@ applicationURL: "https://www.canada.ca/en/revenue-agency.html"   # Sets the URL 
 ---
 ```
 
-## Custom YAML site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options {: #custom-yaml-site-_config.yml-file-options }
+## Custom YAML site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options
 
 ```yaml
 ---
@@ -232,7 +232,7 @@ robots: "noindex, nofollow"                        # Default value to use site w
 ---
 ```
 
-## Installation instructions for running GCWeb Jekyll on a local (personal) PC {: #installation-instructions-for-running-gcweb-jekyll-on-a-local-pc }
+## Installation instructions for running GCWeb Jekyll on a local (personal) PC
 
 1. [Video instructions for all of step 1-2](https://www.youtube.com/watch?v=LfP7Y9Ja6Qc) Download and install Ruby. You can find a version to download through the [Download Ruby](https://www.ruby-lang.org/en/downloads/) page
    1. Install Ruby with all the defaults checked and make sure `Run 'ridk install' to install MSYS2 and development toolchain.` is checked.  This will open a command prompt install dialog
