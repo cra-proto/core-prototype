@@ -71,6 +71,7 @@ script:
 {%- assign physical_html_depth = 0 -%}
 
 {%- for active_path in sorted_paths -%}
+  {%- assign last_char = active_path | slice: -1 -%}
   {%- assign p = nil -%}
   {%- for item in all_pages -%}
     {%- if item.url == active_path or item.path == active_path -%}
@@ -148,7 +149,7 @@ script:
     {%- endfor -%}
   {%- endif -%}
   {%- assign display_label = filename -%}
-  {%- if filename == nil or filename == "" -%}
+  {%- if filename == blank or last_char == "/" -%}
     {%- assign display_label = "index.html" -%}
   {%- endif -%}
   {%- assign leaf_level = physical_html_depth | plus: 1 -%}
