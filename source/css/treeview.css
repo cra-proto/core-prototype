@@ -173,9 +173,8 @@ li[role="treeitem"] a.tv-page-link {
 }
 
 .wb-treeview li[role="treeitem"] span.tv-type {
-  margin-right: 1.05em;
+  margin-right: 1.2em;
   top: -3px;
-  left: -1.5px;
 }
 
 li[role="treeitem"] a.tv-page-link:visited {
