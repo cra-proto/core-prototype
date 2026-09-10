@@ -106,7 +106,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
 
 .wb-treeview li[role="treeitem"][data-action-id="delete"]::after {
   background: #f3e9e8;
-  border: 2px #269abc solid;
+  border: 2px #d3080c solid;
 }
 
 .wb-treeview li[role="treeitem"][data-action-id="info"]::after {
