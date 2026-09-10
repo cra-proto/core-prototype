@@ -172,6 +172,9 @@ li[role="treeitem"] a.tv-page-link {
 /*  font-weight: 500; */
 }
 
+.wb-treeview li[role="treeitem"] span.tv-type {
+  margin-right: 1.2em;
+}
 
 li[role="treeitem"] a.tv-page-link:visited {
   color: #551a8b;
