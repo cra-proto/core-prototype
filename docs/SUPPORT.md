@@ -243,8 +243,8 @@ robots: "noindex, nofollow"                        # Default value to use site w
    3. Open the `Command prompt/Terminal/PowerShell` and enter `ruby -v` to verify that **ruby** is installed
    4. At the `Command prompt/Terminal/PowerShell` and enter `gem -v` to verify that **gem** is installed
 2. At the `Command prompt/Terminal/PowerShell` and enter `gem install jekyll bundler` after it has completed enter `jekyll -v` to verify that **Jekyll** is installed
-3. At the `Command prompt/Terminal/PowerShell` and enter `gem install GitHub-pages` to install GitHub page support
-4. Update any older elements that you may have been notified of in the `Command prompt/Terminal/PowerShell` when you did the various `gem install` commands (e.g. `gem update --system 3.6.7`)
+3. At the `Command prompt/Terminal/PowerShell` and enter `gem install github-pages` to install GitHub page support
+4. Update any older elements that you may have been notified of in the `Command prompt/Terminal/PowerShell` when you did the various `gem install` commands (e.g. `gem update --system 4.0.20`)
 5. At the `Command prompt/Terminal/PowerShell` enter `bundle exec jekyll serve --live reload`. This should run Jekyll, generate your site, and start the local site server
    1. **Note**: a `gemfile` is required in the local GitHub repository to run the jekyll server.  This gemfile should contain the following line: `gem "github-pages", group: :jekyll_plugins`
 6. In your browser go to `https://localhost:4000/github-workspace-name/` and you should see your a fully generated version of your site
