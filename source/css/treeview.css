@@ -199,12 +199,12 @@ li[role="treeitem"] > span.tv-title::before {
   padding: 2px;
 }
 
-/* Closed Folder State */
+/* Closed Folder State - Segoe UI Emoji */
 li[role="treeitem"][aria-expanded="false"] > span.tv-title::before {
   content: "\1f4c1";
 }
 
-/* Open Folder State */
+/* Open Folder State - Segoe UI Emoji */
 li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   content: "\1f4c2";
 }
@@ -215,31 +215,50 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
     font-weight: 900;
   }
 
-  /* Closed Folder State */
+  /* Closed Folder - Wingdings */
   li[role="treeitem"][aria-expanded="false"] > span.tv-title::before {
     content: "\0030";
   }
 
-  /* Open Folder State */
+  /* Open Folder State - Wingdings */
   li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
     content: "\0031";
   }
 }
 
 @supports (font-family: "Font Awesome 5 Free") {
+
+  /*
   li[role="treeitem"] > span.tv-title::before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
   }
+*/
 
-  /* Closed Folder State */
+  /* Closed Folder State - FontAwesome 5 */
   li[role="treeitem"][aria-expanded="false"] > span.tv-title::before {
-    content: "\f07b";
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+    content: "\f07b" !important;
+
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
   }
 
-  /* Open Folder State */
+  /* Open Folder State - FontAwesome 5 */
   li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
-    content: "\f07c";
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+    content: "\f07c" !important;
+
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
   }
 }
 
