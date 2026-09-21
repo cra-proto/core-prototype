@@ -5,7 +5,7 @@
 
 ## On this page
 
-- [Basic GCWeb setup instructions](basic-gcweb-setup-instructions)
+- [Basic GCWeb setup instructions](#basic-gcweb-setup-instructions)
 - [Page template options](#page-template-options)
 - [Custom GitHub options](#custom-github-options)
 - [GCWeb Jekyll template YAML Front Matter page settings](#gcweb-jekyll-template-yaml-front-matter-page-settings)
@@ -19,7 +19,7 @@
 
 ## Basic GCWeb setup instructions
 
-For the GCWeb/Jekyll setup to function a `_config.yml` file must saved at the repositories root. Examples: [GCWeb _config.yml](https://github.com/wet-boew/gcweb-jekyll/blob/master/_config.yml), [core-prototype _config.yml](https://github.com/cra-design/core-prototype/blob/main/_config.yml)
+For the GCWeb/Jekyll setup to function a `_config.yml` file must saved at the repositories root. Examples: [GCWeb _config.yml](https://github.com/wet-boew/gcweb-jekyll/blob/master/_config.yml), [core-prototype _config.yml](https://github.com/cra-proto/core-prototype/blob/main/_config.yml)
 
 ## Page template options
 
@@ -30,7 +30,7 @@ For the GCWeb/Jekyll setup to function a `_config.yml` file must saved at the re
 ## Custom GitHub options
 
 - The data attribute `data-exit="false"` can be used on `<a>` and `<form>` tags directed outside of the GitHub domain so that replacement links are not generated to direct them automatically through the **exit intent page**
-- Link overrides can be added to the [exit-link-excludes.json](https://github.com/cra-design/gst-hst-business/blob/main/_data/exitlinkexcludes.json) file. If there is only an `origin` link and no `destination` link then all occurrences of the link to that page will be excluded from redirects to the **exit intent page**.
+- Link overrides can be added to the [exit-link-excludes.json](https://github.com/cra-proto/core-prototype/blob/main/source/data/exclude-redirect-links.json) file. If there is only an `origin` link and no `destination` link then all occurrences of the link to that page will be excluded from redirects to the **exit intent page**.
   If there is both an `origin` link and a `destination` link then all occurrences of the `origin` link will be redirected to the `destination` page
 
 ## GCWeb Jekyll template YAML Front Matter page settings
@@ -163,7 +163,7 @@ robots: "noindex, nofollow"                        # Default value to use on the
 ---
 ```
 
-## Site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options
+## Site [_config.yml](https://github.com/cra-proto/core-prototype/blob/main/_config.yml) file options
 
 ```yaml
 ---
@@ -185,7 +185,7 @@ termsURL: "https://www.canada.ca/en/transparency/terms.html"   # Sets the URL fo
 ---
 ```
 
-## Additional site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options
+## Additional site [_config.yml](https://github.com/cra-proto/core-prototype/blob/main/_config.yml) file options
 
 ```yaml
 ---
@@ -209,7 +209,7 @@ applicationURL: "https://www.canada.ca/en/revenue-agency.html"   # Sets the URL 
 ---
 ```
 
-## Custom YAML site [_config.yml](https://github.com/cra-design/gst-hst-business/blob/main/_config.yml) file options
+## Custom YAML site [_config.yml](https://github.com/cra-proto/core-prototype/blob/main/_config.yml) file options
 
 ```yaml
 ---
