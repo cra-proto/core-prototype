@@ -2,5 +2,53 @@
     {
       "origin": "", 
       "destination": ""
+    }, 
+    {
+      "origin": "https://cenw-wscoe.github.io/sgdc-cdts/docs/internet-nodocwrite-en.html"
+    }, 
+    {
+      "origin": "https://design.cra-arc.alpha.canada.ca/en/index.html"
+    }, 
+    {
+      "origin": "https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll"
+    }, 
+    {
+      "origin": "https://github.com/wet-boew/gcweb-jekyll"
+    }, 
+    {
+      "origin": "https://github.com/wet-boew/gcweb-jekyll/blob/master/_config.yml"
+    }, 
+    {
+      "origin": "https://github.github.com/gfm/"
+    }, 
+    {
+      "origin": "https://help.github.com"
+    }, 
+    {
+      "origin": "https://jekyllrb.com/docs/liquid/"
+    }, 
+    {
+      "origin": "https://jekyllrb.com/docs/variables/"
+    }, 
+    {
+      "origin": "https://learnxinyminutes.com/docs/yaml/"
+    }, 
+    {
+      "origin": "https://mermaid.js.org/intro/getting-started.html"
+    }, 
+    {
+      "origin": "https://shopify.github.io/liquid/basics/introduction/"
+    }, 
+    {
+      "origin": "https://wet-boew.github.io/GCWeb/index-en.html"
+    }, 
+    {
+      "origin": "https://www.ruby-lang.org/en/downloads/"
+    }, 
+    {
+      "origin": "https://github.com/cra-proto/core-prototype/blob/main/_config.yml"
+    }, 
+    {
+      "origin": "https://github.com/cra-proto/core-prototype/blob/main/source/data/exclude-redirect-links.json"
     }
 ]
