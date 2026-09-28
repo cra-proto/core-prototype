@@ -320,7 +320,7 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   z-index: 999999;
   white-space: normal;
   width: max-content;
-  max-width: 95vw;
+  max-width: 70vw;
   word-wrap: break-word;
   text-align: center;
   box-sizing: border-box !important;
