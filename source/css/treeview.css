@@ -316,14 +316,21 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   border: 1px #000 solid;
   padding: 6px 12px;
   font-size: 14px;
-  z-index: 999999;
   line-height: 1.2em;
+  z-index: 999999;
   white-space: normal;
   width: max-content;
-  max-width: 70vw;
+  max-width: 95vw;
   word-wrap: break-word;
   text-align: center;
   box-sizing: border-box !important;
   border-radius: 4px;
-  box-shadow: 0px 4px 8px #cecece;
+  box-shadow: 0px 4px 8px #CECECE;
+}
+
+/* Left Segment Shadow and Split Layout Alterations */
+.tv-page-link[data-title-tooltip]:hover::after,
+.tv-page-link[data-title-tooltip]:focus::after {
+  transform: translateX(-50%) !important;
+  left: calc(50% + var(--tooltip-shift, 0px)) !important;
 }
