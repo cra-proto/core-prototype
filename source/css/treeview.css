@@ -283,7 +283,6 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
     font-family: "Font Awesome 5 Free" !important;
     font-weight: 900 !important;
     content: "\f07b" / "" !important;
-
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     font-style: normal;
@@ -296,7 +295,6 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
     font-family: "Font Awesome 5 Free" !important;
     font-weight: 900 !important;
     content: "\f07c" / "" !important;
-
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     font-style: normal;
@@ -305,24 +303,27 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   }
 }
 
+/* Main Text Container Tooltip Setup (Right Side Segment) */
 .tv-page-link[data-title-tooltip]:hover::after, 
 .tv-page-link[data-title-tooltip]:focus::after {
   content: attr(data-title-tooltip);
   position: absolute;
   bottom: 135%;
   left: calc(50% + var(--tooltip-shift, 0px));
-  transform: translateX(-50%);
+  transform: none;
   background-color: #212121;
   color: #FFF;
   border: 1px #000 solid;
   padding: 6px 12px;
   font-size: 14px;
   z-index: 999999;
-  border-radius: 4px;
-  box-shadow: 0px 4px 8px #cecece;
+  line-height: 1.2em;
   white-space: normal;
   width: max-content;
   max-width: 70vw;
   word-wrap: break-word;
   text-align: center;
+  box-sizing: border-box !important;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px #cecece;
 }
