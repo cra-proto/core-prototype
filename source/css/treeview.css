@@ -184,18 +184,6 @@ li[role="treeitem"] a.tv-page-link:visited {
   color: #7834BC;
 }
 
-.wb-treeview li[role="treeitem"]:has(.tv-page-link:hover), 
-.wb-treeview li[role="treeitem"]:has(.tv-page-link:focus) {
-  position: relative !important;
-  z-index: 99999 !important;
-}
-
-.tv-page-link:hover, 
-.tv-page-link:focus {
-  position: relative !important;
-  z-index: 100 !important;
-}
-
 /* Keyboard Accessibility - Focus outlines */
 [role="treeitem"] span.tv-title:focus, 
 [role="treeitem"] a.tv-page-link:focus, 
@@ -204,6 +192,24 @@ li[role="treeitem"] a.tv-page-link:visited {
 [role="treeitem"] span.tv-title:focus-visible, 
 [role="treeitem"] a.tv-page-link:focus-visible {
   outline: 1px dotted #000;
+}
+
+.wb-treeview li[role="treeitem"]:has(.tv-page-link:hover), 
+.wb-treeview li[role="treeitem"]:has(.tv-page-link:focus) {
+  position: relative !important;
+  z-index: auto !important;
+}
+
+.wb-treeview li[role="treeitem"] span.tv-filtered:has(.tv-page-link:hover),
+.wb-treeview li[role="treeitem"] span.tv-filtered:has(.tv-page-link:focus) {
+  position: relative !important;
+  z-index: 99999 !important;
+}
+
+.tv-page-link:hover, 
+.tv-page-link:focus {
+  position: relative !important;
+  z-index: 100 !important;
 }
 
 li[role="treeitem"][aria-expanded="false"] + [role="group"], 
