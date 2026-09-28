@@ -306,9 +306,9 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   bottom: 135%;
   left: calc(50% + var(--tooltip-shift, 0px));
   transform: translateX(-50%);
-  background-color: #eee;
-  color: #000;
-  border: 1px #acacac solid;
+  background-color: #212121;
+  color: #FFF;
+  border: 1px #000 solid;
   padding: 6px 12px;
   font-size: 14px;
   z-index: 999999;
