@@ -55,7 +55,7 @@ li[role="treeitem"]::before {
   left: -2px;
   width: calc(var(--spacing) + 2px);
   height: calc(var(--spacing) + 1px);
-  border: 2px solid var(--listitemcolor);
+  border: 2px var(--listitemcolor) solid;
   border-width: 0 0 2px 2px;
   transform: translate3d(0, 0, 0);
 }
@@ -80,7 +80,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
   background: var(--listitemcolor);
   transform: translate3d(0, 0, 0);
 
-/*  border: 2px solid var(--listitemcolor);
+/*  border: 2px var(--listitemcolor) solid;
   box-sizing: border-box;
   background: radial-gradient(
     circle, 
@@ -96,34 +96,6 @@ ul[role="tree"] > li[role="treeitem"]::before {
 .treeview li:has(> span.tv-title)::after, 
 .treeview li.tv-parent::after {
   display: none;
-}
-
-/* Action variations applied to indicators */
-.treeview li[role="treeitem"][data-action-id="static-noaction"]::after {
-  background: #FFF;
-  border: 2px #ACACAC solid;
-
-/*  border: 5px var(--listitemcolor) double; */
-}
-
-.treeview li[role="treeitem"][data-action-id="add"]::after {
-  background: #D8EECA;
-  border: 2px #278400 solid;
-}
-
-.treeview li[role="treeitem"][data-action-id="modify"]::after {
-  background: #F9F4D4;
-  border: 2px #F90 solid;
-}
-
-.treeview li[role="treeitem"][data-action-id="delete"]::after {
-  background: #F3E9E8;
-  border: 2px #D3080C solid;
-}
-
-.treeview li[role="treeitem"][data-action-id="info"]::after {
-  background: #D7FAFF;
-  border: 2px #269ABC solid;
 }
 
 /* Badges / Document type identifiers */
@@ -150,8 +122,6 @@ li[role="treeitem"] span.tv-title {
 .treeview li[role="treeitem"] span.tv-title:hover {
   background-color: var(--expandcolor);
   color: #FFF;
-
-/*  font-weight: 500; */
 }
 
 .tv-page-link {
@@ -191,7 +161,7 @@ li[role="treeitem"] a.tv-page-link:visited {
 [role="treeitem"] a.tv-page-link.focus, 
 [role="treeitem"] span.tv-title:focus-visible, 
 [role="treeitem"] a.tv-page-link:focus-visible {
-  outline: 1px dotted #000;
+  outline: 1px var(--listitemcolor) dotted;
 }
 
 .treeview li[role="treeitem"]:has(.tv-page-link:hover), 
@@ -271,13 +241,6 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
 
 @supports (font-family: "Font Awesome 5 Free") {
 
-  /*
-  li[role="treeitem"] > span.tv-title::before {
-    font-family: "Font Awesome 5 Free" !important;
-    font-weight: 900 !important;
-  }
-*/
-
   /* Closed Folder State - FontAwesome 5 */
   li[role="treeitem"][aria-expanded="false"] > span.tv-title::before {
     font-family: "Font Awesome 5 Free" !important;
@@ -328,9 +291,117 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   box-shadow: 0px 4px 8px #CECECE;
 }
 
+/* Action variations applied to indicators */
+.treeview li[role="treeitem"][data-action-id="static-noaction"]::after {
+  background: #FFF;
+  border: 2px #ACACAC solid;
+
+/*  border: 5px var(--listitemcolor) double; */
+}
+
+/*
+ * Currently unutilized data styles
+*/
+
+.treeview li[role="treeitem"][data-action-id="add"]::after {
+  background: #D8EECA;
+  border: 2px #278400 solid;
+}
+
+.treeview li[role="treeitem"][data-action-id="modify"]::after {
+  background: #F9F4D4;
+  border: 2px #F90 solid;
+}
+
+.treeview li[role="treeitem"][data-action-id="delete"]::after {
+  background: #F3E9E8;
+  border: 2px #D3080C solid;
+}
+
+.treeview li[role="treeitem"][data-action-id="info"]::after {
+  background: #D7FAFF;
+  border: 2px #269ABC solid;
+}
+
+.treeview li[role="treeitem"][data-action-id="bilingual"]::after {
+  background: linear-gradient(90deg, #acacac 50%, #eee 50%);
+  border: 2px #acacac solid;
+}
+
+.tv-page-link[data-title-tooltip][data-status]:not([data-status=""]):hover::after, 
+.tv-page-link[data-title-tooltip][data-status]:not([data-status=""]):focus::after {
+  box-shadow: 0px 4px 8px #cecece;
+  border-radius: 0px 4px 4px 0px;
+  border-left: none;
+}
+
 /* Left Segment Shadow and Split Layout Alterations */
-.tv-page-link[data-title-tooltip]:hover::after, 
-.tv-page-link[data-title-tooltip]:focus::after {
+.tv-page-link[data-title-tooltip]:not([data-status]):hover::after, 
+.tv-page-link[data-title-tooltip]:not([data-status]):focus::after, 
+.tv-page-link[data-title-tooltip][data-status=""]:hover::after, 
+.tv-page-link[data-title-tooltip][data-status=""]:focus::after {
   transform: translateX(-50%) !important;
   left: calc(50% + var(--tooltip-shift, 0px)) !important;
+}
+
+/* Status Indicator Prefix Base Box */
+.tv-page-link[data-title-tooltip][data-status]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status]:not([data-status=""]):focus::before {
+  content: attr(data-status);
+  position: absolute;
+  bottom: 135%;
+  left: auto;
+  right: calc(50% - var(--tooltip-shift, 0px));
+  background: #CFD1D5;
+  border: 1px #969696 solid;
+  color: #000;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.2em;
+  white-space: nowrap;
+  width: max-content;
+  z-index: 999999;
+  box-shadow: none !important;
+  border-radius: 4px 0px 0px 4px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box !important;
+  height: var(--tooltip-height, auto) !important;
+}
+
+.tv-page-link[data-title-tooltip][data-status="info"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="info"]:not([data-status=""]):focus::before {
+  background: #d7faff;
+  border: 1px #269abc solid;
+  color: #000;
+}
+
+.tv-page-link[data-title-tooltip][data-status="add"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="add"]:not([data-status=""]):focus::before {
+  background: #d8eeca;
+  border: 1px #278400 solid;
+  color: #000;
+}
+
+.tv-page-link[data-title-tooltip][data-status="update"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="update"]:not([data-status=""]):focus::before {
+  background: #f9f4d4;
+  border: 1px #f90 solid;
+  color: #000;
+}
+
+.tv-page-link[data-title-tooltip][data-status="unpublish"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="unpublish"]:not([data-status=""]):focus::before {
+  background: #f3e9e8;
+  border: 1px #d3080c solid;
+  color: #000;
+}
+
+.tv-page-link[data-title-tooltip][data-status="other"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="other"]:not([data-status=""]):focus::before {
+  background: linear-gradient(to right, #5a5a5a 0px, #5a5a5a 1px, #2d2d2d 1px, #000 100%);
+  border: 1px #333 solid;
+  border-right: none;
+  color: #FFFF99;
 }
