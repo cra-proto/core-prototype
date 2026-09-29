@@ -274,9 +274,14 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   bottom: 135%;
   left: calc(50% + var(--tooltip-shift, 0px));
   transform: none;
+  background-color: #EEE;
+  color: #000;
+  border: 1px #ACACAC solid;
+/*
   background-color: #333;
   color: #D7DEEF;
   border: 1px #D7DEEF solid;
+*/
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.2em;
