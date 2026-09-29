@@ -384,36 +384,37 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   height: var(--tooltip-height, auto) !important;
 }
 
-.tv-page-link[data-title-tooltip][data-status="info"]:not([data-status=""]):hover::before, 
-.tv-page-link[data-title-tooltip][data-status="info"]:not([data-status=""]):focus::before {
-  background: #d7faff;
-  border: 1px #269abc solid;
-  color: #000;
-}
 
-.tv-page-link[data-title-tooltip][data-status="success"]:not([data-status=""]):hover::before, 
-.tv-page-link[data-title-tooltip][data-status="success"]:not([data-status=""]):focus::before {
+.tv-page-link[data-title-tooltip][data-status="Add"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="Add"]:not([data-status=""]):focus::before {
   background: #d8eeca;
   border: 1px #278400 solid;
   color: #000;
 }
 
-.tv-page-link[data-title-tooltip][data-status="warning"]:not([data-status=""]):hover::before, 
-.tv-page-link[data-title-tooltip][data-status="warning"]:not([data-status=""]):focus::before {
+.tv-page-link[data-title-tooltip][data-status="Update"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="Update"]:not([data-status=""]):focus::before {
   background: #f9f4d4;
   border: 1px #f90 solid;
   color: #000;
 }
 
-.tv-page-link[data-title-tooltip][data-status="danger"]:not([data-status=""]):hover::before, 
-.tv-page-link[data-title-tooltip][data-status="danger"]:not([data-status=""]):focus::before {
+.tv-page-link[data-title-tooltip][data-status="Unpublish"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="Unpublish"]:not([data-status=""]):focus::before {
   background: #f3e9e8;
   border: 1px #d3080c solid;
   color: #000;
 }
 
-.tv-page-link[data-title-tooltip][data-status="alternative"]:not([data-status=""]):hover::before, 
-.tv-page-link[data-title-tooltip][data-status="alternative"]:not([data-status=""]):focus::before {
+.tv-page-link[data-title-tooltip][data-status="TO DO"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="TO DO"]:not([data-status=""]):focus::before {
+  background: #d7faff;
+  border: 1px #269abc solid;
+  color: #000;
+}
+
+.tv-page-link[data-title-tooltip][data-status="Move"]:not([data-status=""]):hover::before, 
+.tv-page-link[data-title-tooltip][data-status="Move"]:not([data-status=""]):focus::before {
   background: linear-gradient(to right, #5a5a5a 0px, #5a5a5a 1px, #2d2d2d 1px, #000 100%);
   border: 1px #333 solid;
   border-right: none;
