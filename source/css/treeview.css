@@ -154,6 +154,12 @@ li[role="treeitem"] a.tv-page-link:visited {
   color: #7834BC;
 }
 
+span.tv-filtered {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
 /* Keyboard Accessibility - Focus outlines */
 [role="treeitem"] span.tv-title:focus, 
 [role="treeitem"] a.tv-page-link:focus, 
