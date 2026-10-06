@@ -368,6 +368,10 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   border: 2px #acacac solid;
 }
 
+.treeview li.node-diamond[role="treeitem"][data-action-id="adjust"]::after {
+  background: linear-gradient(135deg, #ACACAC 50%, #EEE 50%);
+}
+
 .treeview li.node-triangle[role="treeitem"][data-action-id="static-noaction"]::after {
   background: linear-gradient(135deg, #FFF 47.5%, 
     #ACACAC 48%, 
