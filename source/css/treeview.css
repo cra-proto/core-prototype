@@ -75,7 +75,6 @@ ul[role="tree"] > li[role="treeitem"]::before {
   left: calc(var(--spacing) - var(--radius) - 1px);
   width: calc(2 * var(--radius));
   height: calc(2 * var(--radius));
-  border-radius: 50%;
   z-index: 3;
   background: var(--listitemcolor);
   transform: translate3d(0, 0, 0);
@@ -90,6 +89,28 @@ ul[role="tree"] > li[role="treeitem"]::before {
     #FFF 51%
   );
 */
+}
+
+.treeview li.node-circle[role="treeitem"]::after {
+  border-radius: 50%;
+}
+
+.treeview li.node-diamond[role="treeitem"]::after {
+  background: linear-gradient(135deg, var(--listitemcolor) 100%, transparent 50%);
+  transform: rotate(135deg);
+}
+
+.treeview li.node-triangle[role="treeitem"]::after {
+  background: linear-gradient(135deg, var(--listitemcolor) 47.5%, 
+    var(--listitemcolor) 48%, 
+    var(--listitemcolor) 52%, 
+    transparent 52.5%
+  );
+  transform: skewY(30deg) rotate(0deg);
+  transform-origin: left center;
+  border: 2px var(--listitemcolor) solid;
+  border-right: none !important;
+  border-bottom: none !important;
 }
 
 /* Hide indicators for folders/parent elements */
@@ -340,6 +361,77 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
 .treeview li[role="treeitem"][data-action-id="adjust"]::after {
   background: linear-gradient(90deg, #acacac 50%, #eee 50%);
   border: 2px #acacac solid;
+}
+
+.treeview li[role="treeitem"][data-action-id="adjust"]::after {
+  background: linear-gradient(90deg, #acacac 50%, #eee 50%);
+  border: 2px #acacac solid;
+}
+
+.treeview li.node-triangle[role="treeitem"][data-action-id="static-noaction"]::after {
+  background: linear-gradient(135deg, #FFF 47.5%, 
+    #ACACAC 48%, 
+    #ACACAC 52%, 
+    transparent 52.5%
+  );
+  border: 2px #ACACAC solid;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+.treeview li.node-triangle[role="treeitem"][data-action-id="success"]::after {
+  background: linear-gradient(135deg, #D8EECA 47.5%, 
+    #278400 48%, 
+    #278400 52%, 
+    transparent 52.5%
+  );
+  border: 2px #278400 solid;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+.treeview li.node-triangle[role="treeitem"][data-action-id="warning"]::after {
+  background: linear-gradient(135deg, #F9F4D4 47.5%, 
+    #F90 48%, 
+    #F90 52%, 
+    transparent 52.5%
+  );
+  border: 2px #F90 solid;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+.treeview li.node-triangle[role="treeitem"][data-action-id="danger"]::after {
+    background: linear-gradient(135deg, #F3E9E8 47.5%, 
+    #D3080C 48%, 
+    #D3080C 52%, 
+    transparent 52.5%
+  );
+  border: 2px #D3080C solid;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+.treeview li.node-triangle[role="treeitem"][data-action-id="info"]::after {
+  background: linear-gradient(135deg, #D7FAFF 47.5%, 
+    #269ABC 48%, 
+    #269ABC 52%, 
+    transparent 52.5%
+  );
+  border: 2px #269ABC solid;
+  border-right: none !important;
+  border-bottom: none !important;
+}
+
+.treeview li.node-triangle[role="treeitem"][data-action-id="adjust"]::after {
+  background: linear-gradient(135deg, #FFF 47.5%, 
+    #ACACAC 48%, 
+    #ACACAC 52%, 
+    transparent 52.5%
+  );
+  border: 2px #ACACAC solid;
+  border-right: none !important;
+  border-bottom: none !important;
 }
 
 .tv-page-link[data-title-tooltip][data-status]:not([data-status=""]):hover::after, 
