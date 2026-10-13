@@ -124,7 +124,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
   display: none;
 }
 
-/* Badges / Document type identifiers */
+/* Document type identifiers */
 .treeview li[role="treeitem"] span.tv-type {
   margin-right: 1.2em;
   top: -3px;
@@ -169,6 +169,20 @@ li[role="treeitem"] a.tv-page-link {
 
 li[role="treeitem"] a.tv-page-link:has(> small.tv-page-title) {
   top: -11px;
+}
+
+@media (max-width: 767px) {
+  .treeview li[role="treeitem"] span.tv-type {
+    top: -1px;
+  }
+
+  .tv-page-link:not([data-content-tooltip]) {
+    top: 1px;
+  }
+
+  li[role="treeitem"] a.tv-page-link:has(> small.tv-page-title) {
+    top: -6px;
+  }
 }
 
 .tv-page-url {
