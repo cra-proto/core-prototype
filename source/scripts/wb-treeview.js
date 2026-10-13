@@ -688,7 +688,7 @@
 
 /* Create and position tooltips showing page title information */
 document.addEventListener("DOMContentLoaded", function () {
-  var links = document.querySelectorAll(".tv-page-link[data-title-tooltip]");
+  var links = document.querySelectorAll(".tv-page-link[data-content-tooltip]");
   var padding = 15;
 
   links.forEach(function (link) {
@@ -701,7 +701,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var linkRect = link.getBoundingClientRect();
       var viewportWidth = window.innerWidth;
 
-      var textAfter = link.getAttribute("data-title-tooltip");
+      var textAfter = link.getAttribute("data-content-tooltip");
       if (textAfter === null) {
         textAfter = "";
       }
@@ -813,7 +813,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Dismiss tooltips dynamically via Escape key (WCAG 2.1 compliance)
   window.addEventListener("keydown", function (event) {
     if (event.key === "Escape" || event.key === "Esc") {
-      var activeLinks = document.querySelectorAll(".tv-page-link[data-title-tooltip]");
+      var activeLinks = document.querySelectorAll(".tv-page-link[data-content-tooltip]");
       activeLinks.forEach(function (activeLink) {
         activeLink.style.removeProperty("--tooltip-shift");
         activeLink.style.removeProperty("--tooltip-height");
