@@ -27,6 +27,11 @@ ul[role="tree"] li {
   margin-bottom: 0.3em;
 }
 
+.treeview li[role="treeitem"]:has(a.tv-page-link > small.tv-page-title) {
+  margin-top: 0.8em;
+  margin-bottom: -0.6em;
+}
+
 li[role="treeitem"] [role="group"] {
   margin-left: calc(var(--radius) - var(--spacing));
   padding-left: 0;
