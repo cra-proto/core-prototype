@@ -706,7 +706,7 @@ document.addEventListener("DOMContentLoaded", function () {
         textAfter = "";
       }
 
-      var textBefore = link.getAttribute("data-status");
+      var textBefore = link.getAttribute("data-indicator-tooltip");
       if (textBefore === null) {
         textBefore = "";
       }
@@ -732,7 +732,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var dynamicHeight = rightRect.height;
       document.body.removeChild(rightDummy);
 
-      // 2. Measure the exact width of the left segment (Status Prefix) if it exists
+      // 2. Measure the exact width of the left segment (Indicator-tooltip Prefix) if it exists
       var leftWidth = 0;
       if (textBefore !== "") {
         var leftDummy = document.createElement("div");
@@ -779,7 +779,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       } else {
-        // Safe fallback for text links completely missing status attributes
+        // Safe fallback for text links completely missing indicator tooltip attributes
         var singleLinkCenter = linkRect.left + (linkRect.width / 2);
         var singleLeftBoundary = singleLinkCenter - (rightWidth / 2);
         var singleRightBoundary = singleLinkCenter + (rightWidth / 2);
