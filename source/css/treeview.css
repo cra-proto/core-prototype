@@ -388,7 +388,7 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
 }
 
 .treeview li.node-diamond[role="treeitem"][data-action-id="partial"]::after {
-  background: linear-gradient(135deg, #ACACAC 50%, #EEE 50%);
+  background: linear-gradient(135deg, #EEE 50%, #ACACAC 50%);
 }
 
 .treeview li.node-triangle[role="treeitem"][data-action-id="static-noaction"]::after {
@@ -446,7 +446,7 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   border-bottom: none !important;
 }
 
-.treeview li.node-triangle[role="treeitem"][data-action-id="adjust"]::after {
+.treeview li.node-triangle[role="treeitem"][data-action-id="partial"]::after {
   background: linear-gradient(135deg, #FFF 47.5%, 
     #ACACAC 48%, 
     #ACACAC 52%, 
