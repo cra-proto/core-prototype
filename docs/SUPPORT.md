@@ -154,7 +154,7 @@ infoBanner:                                        # Sets a Banner at the top of
 ```yaml
 ---
 testBanner: [true | false]                         # Toggles if the testing site only banner shows for a page (default: true)
-sitemapExclude: [true | false]                     # Toggles whether page will be included in the generated sitemap (default: false)
+sitemapExclude: [true | false]                     # Toggles whether page will not be included in the generated sitemap (default: false)
 notedlinks:                                        # Configures and adds links of your choice to the testing site only banner for a page
   - title: "The link title"
     link: "The link URL"
