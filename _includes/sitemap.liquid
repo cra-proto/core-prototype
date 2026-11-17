@@ -51,7 +51,6 @@
 
 {%- assign exclude_folders = "" | split: "" -%}
 {%- assign exclude_paths = "" | split: "" -%}
-{%- assign exclude_names = "" | split: "" -%}
 
 {%- if include.exclude_filepath and include.exclude_filepath != "" -%}
   {%- assign raw_excludes = include.exclude_filepath | split: "," -%}
@@ -60,19 +59,15 @@
     {%- if ex == "" -%}
       {%- continue -%}
     {%- endif -%}
-    {%- if ex contains "/" -%}
-      {%- assign ch = ex | slice: 0 -%}
-      {%- if ch != "/" -%}
-        {%- assign ex = ex | prepend: "/" -%}
-      {%- endif -%}
-      {%- assign ch = ex | slice: -1 -%}
-      {%- if ch == "/" -%}
-        {%- assign exclude_folders = exclude_folders | push: ex -%}
-      {%- else -%}
-        {%- assign exclude_paths = exclude_paths | push: ex -%}
-      {%- endif -%}
+    {%- assign ch = ex | slice: 0 -%}
+    {%- if ch != "/" -%}
+    {%- assign ex = ex | prepend: "/" -%}
+    {%- endif -%}
+    {%- assign ch = ex | slice: -1 -%}
+    {%- if ch == "/" -%}
+      {%- assign exclude_folders = exclude_folders | push: ex -%}
     {%- else -%}
-      {%- assign exclude_names = exclude_names | push: ex -%}
+      {%- assign exclude_paths = exclude_paths | push: ex -%}
     {%- endif -%}
   {%- endfor -%}
 {%- endif -%}
@@ -105,8 +100,7 @@
       {%- continue -%}
     {%- endunless -%}
   {%- endif -%}
-  {%- assign tree_name = tree_path | split: "/" | last -%}
-  {%- if exclude_paths contains tree_path or exclude_names contains tree_name -%}
+  {%- if exclude_paths contains tree_path -%}
     {%- continue -%}
   {%- endif -%}
   {%- assign is_excluded = false -%}
