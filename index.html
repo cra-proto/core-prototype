@@ -50,8 +50,9 @@ script:
         - show_labels       [Boolean] : (Default: true) Toggles whether labels (e.g., "static") are shown before some links. (Optional)
 
         "sitemapExclude: true" in the FrontMatter section of any page will hide that page from displaying on the sitemap.
+
         {%- endcomment -%}
 
-        {% include sitemap.liquid tree_id="tree1" tree_label="tree_header" extensions=".html, .pdf" exclude_filepath="robots.txt" %}
+        {% include sitemap.liquid tree_id="tree1" tree_label="tree_header" extensions=".html, .pdf" %}
     </section>
 </div>
