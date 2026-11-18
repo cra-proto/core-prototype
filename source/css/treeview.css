@@ -81,7 +81,16 @@ ul[role="tree"] > li[role="treeitem"]::before {
   width: calc(2 * var(--radius));
   height: calc(2 * var(--radius));
   z-index: 3;
-  background: var(--listitemcolor);
+  box-sizing: border-box;
+  --node-border-size: 2px;
+  --node-tint-color: var(--listitemcolor);
+  --node-outline-color: #ACACAC;
+  --node-solid-color: var(--listitemcolor);
+  --node-bg-tint: var(--node-solid-color);
+  --node-outline: var(--node-solid-color);
+  background-color: var(--node-bg-tint);
+  border-width: var(--node-border-size);
+  border-color: var(--node-outline);
   transform: translate3d(0, 0, 0);
 
 /*  border: 2px var(--listitemcolor) solid;
@@ -96,26 +105,48 @@ ul[role="tree"] > li[role="treeitem"]::before {
 */
 }
 
+.treeview li[role="treeitem"]::after {
+  --node-bg-tint: var(--node-tint-color);
+  background-image: linear-gradient(90deg, var(--node-bg-solid, var(--node-bg-tint)) 50%, var(--node-bg-tint) 50%);
+}
+
 .treeview li.node-circle[role="treeitem"]::after {
   border-radius: 50%;
 }
 
 .treeview li.node-diamond[role="treeitem"]::after {
-  background: linear-gradient(135deg, var(--listitemcolor) 100%, transparent 50%);
-  transform: rotate(135deg);
+  background-image: linear-gradient(45deg, var(--node-bg-solid, var(--node-bg-tint)) 50%, var(--node-bg-tint) 50%);
+  transform: rotate(45deg);
 }
 
 .treeview li.node-triangle[role="treeitem"]::after {
-  background: linear-gradient(135deg, var(--listitemcolor) 47.5%, 
-    var(--listitemcolor) 48%, 
-    var(--listitemcolor) 52%, 
-    transparent 52.5%
-  );
-  transform: skewY(30deg) rotate(0deg);
-  transform-origin: left center;
-  border: 2px var(--listitemcolor) solid;
-  border-right: none !important;
-  border-bottom: none !important;
+  --tri-apex: calc(2 * var(--radius) - var(--node-border-size) * 2.236);
+  border: 0;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  background-color: var(--node-outline);
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient(to right, var(--node-outline) var(--node-border-size), transparent var(--node-border-size)),
+    conic-gradient(from 243.435deg at var(--tri-apex) 50%, var(--node-bg-solid, transparent) 0deg 52.8deg, transparent 53.4deg),
+    conic-gradient(from 243.435deg at var(--tri-apex) 50%, var(--node-bg-tint) 0deg 52.8deg, transparent 53.4deg);
+  background-size: 100% 100%, 50% 100%, 100% 100%;
+  background-position: 0 0, 0 0, 0 0;
+}
+
+.treeview li.node-style-partial-bottom[role="treeitem"]::after {
+  background: linear-gradient(180deg, var(--node-tint-color) 50%, var(--node-solid-color) 50%);
+}
+
+.treeview li.node-diamond.node-style-partial-bottom[role="treeitem"]::after {
+  background: linear-gradient(135deg, var(--node-tint-color) 50%, var(--node-solid-color) 50%);
+}
+
+.treeview li.node-outline-solid[role="treeitem"]::after {
+  border: 2px var(--node-outline-color) solid;
+}
+
+.treeview li.node-outline-dashed[role="treeitem"]::after {
+  border: 2px var(--node-outline-color) dashed;
 }
 
 /* Hide indicators for folders/parent elements */
@@ -352,109 +383,67 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
 }
 
 /* Action variations applied to indicators */
-.treeview li[role="treeitem"][data-action-id="static-noaction"]::after {
-  background: #FFF;
-  border: 2px #ACACAC solid;
+.treeview li.node-style-none[role="treeitem"]::after {
+  --node-bg-tint: #FFF;
+}
 
-/*  border: 5px var(--listitemcolor) double; */
+.treeview li[role="treeitem"]::after {
+  --node-outline: var(--node-outline-color);
+}
+
+.treeview li.node-outline-none[role="treeitem"]::after {
+  --node-outline: transparent;
+}
+
+.treeview li.node-style-partial-left[role="treeitem"]::after {
+  --node-solid-color: var(--listitemcolor);
+  --node-tint-color: #EEE;
+  --node-outline-color: var(--listitemcolor);
+}
+
+.treeview li.node-style-partial-left[role="treeitem"]::after {
+  --node-bg-solid: var(--node-solid-color);
+  --node-bg-tint: var(--node-tint-color);
+  --node-outline: var(--node-outline-color);
+}
+
+.treeview li.node-style-partial-bottom[role="treeitem"]::after {
+  --node-solid-color: var(--listitemcolor);
+  --node-tint-color: #EEE;
+  --node-outline-color: var(--listitemcolor);
 }
 
 /*
  * Currently unutilized data styles
-*/
+ */
 .treeview li[role="treeitem"][data-action-id="success"]::after {
-  background: #D8EECA;
-  border: 2px #278400 solid;
+  --node-solid-color: #278400;
+  --node-tint-color: #D8EECA;
+  --node-outline-color: #278400;
 }
 
 .treeview li[role="treeitem"][data-action-id="warning"]::after {
-  background: #F9F4D4;
-  border: 2px #F90 solid;
+  --node-solid-color: #F90;
+  --node-tint-color: #F9F4D4;
+  --node-outline-color: #F90;
 }
 
 .treeview li[role="treeitem"][data-action-id="danger"]::after {
-  background: #F3E9E8;
-  border: 2px #D3080C solid;
+  --node-solid-color: #D3080C;
+  --node-tint-color: #F3E9E8;
+  --node-outline-color: #D3080C;
 }
 
 .treeview li[role="treeitem"][data-action-id="info"]::after {
-  background: #D7FAFF;
-  border: 2px #269ABC solid;
+  --node-solid-color: #269ABC;
+  --node-tint-color: #D7FAFF;
+  --node-outline-color: #269ABC;
 }
 
-.treeview li[role="treeitem"][data-action-id="partial"]::after {
-  background: linear-gradient(90deg, #ACACAC 50%, #EEE 50%);
-  border: 2px #ACACAC solid;
-}
-
-.treeview li.node-diamond[role="treeitem"][data-action-id="partial"]::after {
-  background: linear-gradient(135deg, #EEE 50%, #ACACAC 50%);
-}
-
-.treeview li.node-triangle[role="treeitem"][data-action-id="static-noaction"]::after {
-  background: linear-gradient(135deg, #FFF 47.5%, 
-    #ACACAC 48%, 
-    #ACACAC 52%, 
-    transparent 52.5%
-  );
-  border: 2px #ACACAC solid;
-  border-right: none !important;
-  border-bottom: none !important;
-}
-
-.treeview li.node-triangle[role="treeitem"][data-action-id="success"]::after {
-  background: linear-gradient(135deg, #D8EECA 47.5%, 
-    #278400 48%, 
-    #278400 52%, 
-    transparent 52.5%
-  );
-  border: 2px #278400 solid;
-  border-right: none !important;
-  border-bottom: none !important;
-}
-
-.treeview li.node-triangle[role="treeitem"][data-action-id="warning"]::after {
-  background: linear-gradient(135deg, #F9F4D4 47.5%, 
-    #F90 48%, 
-    #F90 52%, 
-    transparent 52.5%
-  );
-  border: 2px #F90 solid;
-  border-right: none !important;
-  border-bottom: none !important;
-}
-
-.treeview li.node-triangle[role="treeitem"][data-action-id="danger"]::after {
-    background: linear-gradient(135deg, #F3E9E8 47.5%, 
-    #D3080C 48%, 
-    #D3080C 52%, 
-    transparent 52.5%
-  );
-  border: 2px #D3080C solid;
-  border-right: none !important;
-  border-bottom: none !important;
-}
-
-.treeview li.node-triangle[role="treeitem"][data-action-id="info"]::after {
-  background: linear-gradient(135deg, #D7FAFF 47.5%, 
-    #269ABC 48%, 
-    #269ABC 52%, 
-    transparent 52.5%
-  );
-  border: 2px #269ABC solid;
-  border-right: none !important;
-  border-bottom: none !important;
-}
-
-.treeview li.node-triangle[role="treeitem"][data-action-id="partial"]::after {
-  background: linear-gradient(135deg, #FFF 47.5%, 
-    #ACACAC 48%, 
-    #ACACAC 52%, 
-    transparent 52.5%
-  );
-  border: 2px #ACACAC solid;
-  border-right: none !important;
-  border-bottom: none !important;
+.treeview li[role="treeitem"][data-action-id="static-noaction"]::after {
+  --node-solid-color: #FFF;
+  --node-tint-color: #FFF;
+  --node-outline-color: #ACACAC;
 }
 
 .tv-page-link[data-content-tooltip][data-indicator-tooltip]:not([data-indicator-tooltip=""]):hover::after, 
