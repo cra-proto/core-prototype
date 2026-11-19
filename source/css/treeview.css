@@ -123,11 +123,11 @@ ul[role="tree"] > li[role="treeitem"]::before {
 }
 
 .treeview li.node-style-partial-horizontal[role="treeitem"]::after {
-  background: linear-gradient(180deg, var(--node-tint-color) 50%, var(--node-solid-color) 50%);
+  background: linear-gradient(180deg, var(--node-bg-tint) 50%, var(--node-bg-solid) 50%);
 }
 
 .treeview li.node-diamond.node-style-partial-horizontal[role="treeitem"]::after {
-  background: linear-gradient(135deg, var(--node-tint-color) 50%, var(--node-solid-color) 50%);
+  background: linear-gradient(135deg, var(--node-bg-tint) 50%, var(--node-bg-solid) 50%);
 }
 
 .treeview li.node-triangle.node-style-partial-horizontal[role="treeitem"]::after {
@@ -135,7 +135,7 @@ ul[role="tree"] > li[role="treeitem"]::before {
   background-repeat: no-repeat;
   background-image:
     linear-gradient(to right, var(--node-outline) var(--node-border-size), transparent var(--node-border-size)),
-    conic-gradient(from 243.435deg at var(--tri-apex) 0%, var(--node-solid-color) 0deg 52.8deg, transparent 53.4deg),
+    conic-gradient(from 243.435deg at var(--tri-apex) 0%, var(--node-bg-solid) 0deg 52.8deg, transparent 53.4deg),
     conic-gradient(from 243.435deg at var(--tri-apex) 50%, var(--node-bg-tint) 0deg 52.8deg, transparent 53.4deg);
   background-size: 100% 100%, 100% 50%, 100% 100%;
   background-position: 0 0, 0 100%, 0 0;
@@ -413,15 +413,28 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   --node-solid-color: #ACACAC;
   --node-tint-color: #EEE;
   --node-outline-color: #ACACAC;
+  --node-bg-solid: var(--node-solid-color);
+  --node-bg-tint: var(--node-tint-color);
+  --node-outline: var(--node-outline-color);
 }
 
 .treeview li.node-style-partial-horizontal.partial-reverse[role="treeitem"]::after, 
 .treeview li.node-style-partial-vertical.partial-reverse[role="treeitem"]::after {
   --node-bg-solid: var(--node-tint-color);
   --node-bg-tint: var(--node-solid-color);
+  --node-outline: var(--node-outline-color);
+}
+
+.treeview li.node-triangle.node-style-partial-vertical[role="treeitem"]::after, 
+.treeview li.node-triangle.node-style-partial-vertical.partial-reverse[role="treeitem"]::after {
+  --node-bg-solid: var(--node-tint-color);
+  --node-bg-tint: var(--node-tint-color);
 }
 
 .treeview li.node-style-reject[role="treeitem"]::after {
+  --node-solid-color: #ACACAC;
+  --node-tint-color: #FFF;
+  --node-outline-color: #ACACAC;
   background: 
     linear-gradient(45deg, transparent 44%, var(--node-solid-color) 44%, var(--node-solid-color) 56%, transparent 56%),
     linear-gradient(-45deg, transparent 44%, var(--node-solid-color) 44%, var(--node-solid-color) 56%, transparent 56%);
@@ -430,9 +443,6 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   background-position: center;
   background-repeat: no-repeat;
   border: 2px var(--node-outline-color) dashed;
-  --node-solid-color: #ACACAC;
-  --node-tint-color: #FFF;
-  --node-outline-color: #ACACAC;
 }
 
 /*
