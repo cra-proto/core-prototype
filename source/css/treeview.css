@@ -411,6 +411,10 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   --node-outline: transparent;
 }
 
+.treeview li.node-triangle.node-outline-none[role="treeitem"]::after {
+  --node-outline: var(--node-tint-color);
+}
+
 .treeview li.node-style-partial-vertical[role="treeitem"]::after {
   --node-solid-color: #ACACAC;
   --node-tint-color: #EEE;
