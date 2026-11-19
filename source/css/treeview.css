@@ -122,15 +122,15 @@ ul[role="tree"] > li[role="treeitem"]::before {
   background-position: 0 0, 0 0, 0 0;
 }
 
-.treeview li.node-style-partial-bottom[role="treeitem"]::after {
+.treeview li.node-style-partial-horizontal[role="treeitem"]::after {
   background: linear-gradient(180deg, var(--node-tint-color) 50%, var(--node-solid-color) 50%);
 }
 
-.treeview li.node-diamond.node-style-partial-bottom[role="treeitem"]::after {
+.treeview li.node-diamond.node-style-partial-horizontal[role="treeitem"]::after {
   background: linear-gradient(135deg, var(--node-tint-color) 50%, var(--node-solid-color) 50%);
 }
 
-.treeview li.node-triangle.node-style-partial-bottom[role="treeitem"]::after {
+.treeview li.node-triangle.node-style-partial-horizontal[role="treeitem"]::after {
   background-color: var(--node-outline);
   background-repeat: no-repeat;
   background-image:
@@ -400,7 +400,7 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   --node-outline: transparent;
 }
 
-.treeview li.node-style-partial-left[role="treeitem"]::after {
+.treeview li.node-style-partial-vertical[role="treeitem"]::after {
   --node-solid-color: #ACACAC;
   --node-tint-color: #EEE;
   --node-outline-color: #ACACAC;
@@ -409,10 +409,16 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   --node-outline: var(--node-outline-color);
 }
 
-.treeview li.node-style-partial-bottom[role="treeitem"]::after {
+.treeview li.node-style-partial-horizontal[role="treeitem"]::after {
   --node-solid-color: #ACACAC;
   --node-tint-color: #EEE;
   --node-outline-color: #ACACAC;
+}
+
+.treeview li.node-style--partial-horizontal.partial-reverse[role="treeitem"]::after, 
+.treeview li.node-style--partial-vertical.partial-reverse[role="treeitem"]::after {
+  --node-bg-solid: var(--node-tint-color);
+  --node-bg-tint: var(--node-solid-color);
 }
 
 .treeview li.node-style-reject[role="treeitem"]::after {
