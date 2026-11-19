@@ -415,8 +415,8 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   --node-outline-color: #ACACAC;
 }
 
-.treeview li.node-style--partial-horizontal.partial-reverse[role="treeitem"]::after, 
-.treeview li.node-style--partial-vertical.partial-reverse[role="treeitem"]::after {
+.treeview li.node-style-partial-horizontal.partial-reverse[role="treeitem"]::after, 
+.treeview li.node-style-partial-vertical.partial-reverse[role="treeitem"]::after {
   --node-bg-solid: var(--node-tint-color);
   --node-bg-tint: var(--node-solid-color);
 }
