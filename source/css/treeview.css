@@ -141,6 +141,17 @@ ul[role="tree"] > li[role="treeitem"]::before {
   background-position: 0 0, 0 100%, 0 0;
 }
 
+.treeview li.node-style-reject:not(:where(.node-triangle))[role="treeitem"]::after {
+  background: 
+    linear-gradient(45deg, transparent 44%, var(--node-bg-solid) 44%, var(--node-bg-solid) 56%, transparent 56%),
+    linear-gradient(-45deg, transparent 44%, var(--node-bg-solid) 44%, var(--node-bg-solid) 56%, transparent 56%);
+  background-color: var(--node-tint-color); /* Base background color */
+  background-size: 50% 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px var(--node-outline) dashed;
+}
+
 .treeview li.node-outline-solid[role="treeitem"]::after {
   border: 2px var(--node-outline-color) solid;
 }
@@ -425,24 +436,19 @@ li[role="treeitem"][aria-expanded="true"] > span.tv-title::before {
   --node-outline: var(--node-outline-color);
 }
 
+.treeview li.node-style-reject:not(:where(.node-triangle))[role="treeitem"]::after {
+  --node-solid-color: #ACACAC;
+  --node-tint-color: #FFF;
+  --node-outline-color: #ACACAC;
+  --node-bg-solid: var(--node-solid-color);
+  --node-bg-tint: var(--node-tint-color);
+  --node-outline: var(--node-outline-color);
+}
+
 .treeview li.node-triangle.node-style-partial-vertical[role="treeitem"]::after, 
 .treeview li.node-triangle.node-style-partial-vertical.partial-reverse[role="treeitem"]::after {
   --node-bg-solid: var(--node-tint-color);
   --node-bg-tint: var(--node-tint-color);
-}
-
-.treeview li.node-style-reject[role="treeitem"]::after {
-  --node-solid-color: #ACACAC;
-  --node-tint-color: #FFF;
-  --node-outline-color: #ACACAC;
-  background: 
-    linear-gradient(45deg, transparent 44%, var(--node-solid-color) 44%, var(--node-solid-color) 56%, transparent 56%),
-    linear-gradient(-45deg, transparent 44%, var(--node-solid-color) 44%, var(--node-solid-color) 56%, transparent 56%);
-  background-color: var(--node-tint-color); /* Base background color */
-  background-size: 50% 50%;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 2px var(--node-outline-color) dashed;
 }
 
 /*
